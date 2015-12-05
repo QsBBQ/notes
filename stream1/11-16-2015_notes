@@ -1,0 +1,35 @@
+Daniel 8 total
+
+-HTML
+  -box model
+    top, left, right, bottom
+    Margin, Border, padding, content
+    Margin position in relation to page
+    border around element
+    padding around content
+    content
+http://www.htmlgoodies.com/
+
+#
+display: inline-block
+#centering an element
+text-align: center;
+
+#
+display: none;
+
+# shorthand
+margin-top: 20px;
+margin-right: 20px;
+margin-bottom: 20px;
+margin-left: 20px;
+#SAME
+margin: 20px;
+#
+div {
+margin: 10px 20px; /*Top &amp; bottom 10px, left &amp; right 20px*/
+}
+div {
+margin: 10px 20px 0 5px; /* Top, right, bottom, left */
+}
+960px container

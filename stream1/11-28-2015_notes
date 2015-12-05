@@ -1,0 +1,58 @@
+#Flexbox
+
+Getting Started with Flexbox
+This Way Up
+Alignment
+Call to Order
+
+div{
+   display:flex;
+}
+
+The layout of a flexbox follows two axes: the main axis and the cross axis.
+
+The main axis is the axis along which the flex items follow each other.
+The cross axis is the axis perpendicular to the main axis.
+
+-Flex-direction
+  flex-direction: row;
+
+  -row: displays flex items horizontally, left to right
+  -row-reverse displays flex items horizontally, right to left
+  -column displays flex items vertically, from top to bottom
+  -column-reverse displays flex items vertically, from bottom to top
+
+-Flex-wrap
+  flex-wrap: wrap;
+
+  -nowrap: Specifies that flex items do not wrap
+  -wrap: Specifies that flex items wrap if necessary
+  -wrap-reverse: specifies that flex items wrap if necessary but in reverse order
+
+-Flex-flow
+  flex-flow: row nowrap;
+
+## Alignment properties
+  justify-content: flex-end;
+
+flex-start: positions flex items at the beginning of the flexbox container
+flex-end: positions flex items at the end of the flexbox container
+center: positions flex items at the center of the flexbox
+space-between: positions flex items with space between them only
+space-around: positions flex items with space before between and after them.
+
+  align-items: center;
+flex-start: positions flex items at the beginning of the flexbox container
+flex-end: positions flex items at the end of the flexbox container
+center: positions flex items at the center of the flexbox container
+baseline: positions flex items along the baseline of their content
+stretch: stretches flex items to fit the flexbox container
+
+-Flex property
+.box{
+  flex: 1;
+  width:150px;
+}
+
+## Call to order
+  order: integer;

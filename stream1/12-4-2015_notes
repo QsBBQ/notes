@@ -1,0 +1,30 @@
+### GIT
+  -Intro
+  Topics include:
+
+      What is GitHub
+      The Command Line – an Interlude
+      Set Up GitHub
+
+  Git is a version control system created by Linus Torvalds
+
+  -Repository
+    directory or called repo
+  -Commit
+    When you commit, you are taking a “snapshot” of your repository at that point in time.
+  -Branch
+    branch off of the main master project
+    After they’re done, they can return to the main master project
+
+  INITIALISING GIT
+  git init
+  git add index.html
+  git commit -m “add index file”
+  example
+  git remote add origin git@github.com:QsBBQ/testproject1.git
+  git push -u origin master
+
+  -Online guides
+  http://rogerdudler.github.io/git-guide/
+  https://cworth.org/hgbook-git/tour/
+  http://git-scm.com/book/en/v2

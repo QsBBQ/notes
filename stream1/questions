@@ -1,0 +1,22 @@
+-Scenario1
+  Monty Hall
+-Scenario2
+  MeetTrack
+  MeetingTracker w/LateTally-with six thinking hats
+  w/notes
+-Scenario3
+  mynote
+
+###
+Div arranging tips?
+Double check what border-box does.
+* red for required
+
+
+
+expand collapse
+
+
+Long term question.
+gunicorn sqlalchemy session management
+embedding python/ipython cli in page.

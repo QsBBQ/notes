@@ -1,0 +1,164 @@
+
+http://www.toptal.com/front-end/introduction-to-responsive-web-design-pseudo-elements-media-queries
+https://codemyviews.com/blog/mobilefirst
+https://developers.google.com/web/fundamentals/design-and-ui/responsive/fundamentals/use-media-queries?hl=en
+
+# Mobile First
+# Browsing on mobile
+
+img{
+width:100%;
+}
+
+The media declaration is asking the question:
+
+Is the media we are using a screen and is it less than 400px in width?
+
+<link rel="stylesheet" media="screen and (max-width: 400px)" href="mobile.css" />
+
+#using multiple stylesheets
+<link rel="stylesheet" media="screen and (max-width: 400px)" href="mobile.css" />
+<link rel="stylesheet" media="screen and (min-width: 401px)" href="desktop.css" />
+
+# A meta viewport tag gives the browser instructions on how to control the page’s dimensions and scaling.
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+# Inline example
+<style type="text/css">
+  @media screen and (min-width: 1000px){
+
+  .box{
+    border: 2px solid red;
+  }
+  p {
+    color: white;
+  }
+}
+</style>
+
+#Navigation bar
+
+# Navbar-css selectors
+
+#Type Selector ie. a, p, div
+a {
+     text-decoration: none; /* text-decoration controls underlining*/
+}
+
+#ID Selector
+<div id="box1"></div>
+<div id="box2"></div>
+<div id="box3"></div>
+
+#box1 {
+     color: orange;
+}
+#box2 {
+     color: yellow;
+}
+#box3 {
+     color: red;
+}
+
+#Class Selector
+<div class="box"></div>
+<div class="box"></div>
+<div class="box large"></div>
+
+.box {
+     color: orange;
+}
+
+.large {
+     text-size: 2em;
+}
+
+#Universal selector *
+* {
+     margin: 0;
+     padding: 0;
+}
+
+# The universal selector can also be used with child selectors. In this example it will target every element that is a child of the #container div. Again, best used for testing.
+
+<pre lang="css" line="0">
+#container * {
+     background-color: purple;
+}
+
+# Descendant selector
+li a {
+     text-decoration: none;
+}
+
+# Pseudo-classes
+-Linked based. ie. clicked, visited, hovered-over
+
+:link – Targets <a> tags, specifically anchor tags that have a href attribute.
+:visited – Selects links that have already been visited.
+:hover – Triggers when the element is hovered over.
+:active – Selects the link while it is being activated (being clicked on or otherwise activated).
+
+:hover {
+   background-color: purple;
+}
+-Position-based
+  div:first-child {
+     font-size: 2em;
+  }
+
+# Pseudo-elements
+p::first-line {
+     font-weight: bold;
+     font-size: 1.2em;
+}
+
+p::first-letter {
+     font-weight: bolder;
+     font-size: 2em;
+}
+
+# Table related elements
+<table> the table itself
+<tr> A table row
+<th> A table cell that is a header
+<td> A table cell that is data
+
+<table>
+    <tr>
+      <th></th>
+      <th>Country</th>
+      <th>Price</th>
+      <th>Nutrition</th>
+      <th>Category</th>
+    </tr>
+    <tr>
+      <th>Spinach</th>
+      <td>America</td>
+      <td>28</td>
+      <td>90</td>
+      <td>Veg</td>
+    </tr>
+    <tr>
+      <th>Carrots</th>
+      <td>France</td>
+      <td>56</td>
+      <td>75</td>
+      <td>Veg</td>
+    </tr>
+ </table>
+
+ -nth child selector
+ tr:nth-child(2n) {
+    background-color: yellow;
+}
+
+selects only 4th element
+tr:nth-child(4) {
+    background-color: yellow;
+}
+
+width and initial-scale
+encourages maximum functional contraints on all small device
+max-width 400px
+can only be applied to block level elements

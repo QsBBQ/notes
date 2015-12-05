@@ -1,0 +1,153 @@
+# Forms of Gradients
+
+# Linear Gradients
+background: linear-gradient(to right, #F0C27B, #4B1248);
+background: linear-gradient(to left, #5F2C82, #3498DB);
+background: linear-gradient(to bottom, #FF4E50, #F9D423);
+
+# Multiple color gradients
+background: linear-gradient(toright, #FFED21 1%, #FF2A06 50%, #9412FF 100%);
+background: linear-gradient(45deg, black, white);
+background: linear-gradient(-45deg, black, white);
+
+# Transperancy with RGBA
+rgba(255,0,0,1) /*full and visible red*/
+background: linear-gradient(-45deg, rgba(0,0,0,0), red);
+background: linear-gradient(left, #FFED21, #FF2A06);
+
+# Radial Gradients
+background: radial-gradient(#5f2c82, #3498db);
+background: radial-gradient(#5f2c82 40%, #3498db 60%);
+
+# Transform property
+-webkit-transform: rotate(30deg);
+-moz-transform: rotate(30deg);
+transform: rotate(30deg);
+
+-rotate
+transform: rotate(10deg); /*clockwise*/
+transform: rotate(-45deg); /*anti-clockwise*/
+
+-scale
+transform: scale(2, .5); /*twice as large in the x-axis and half on the y-axis*/
+
+-skew
+transform: skew(5deg, 10deg); /*skew 5deg on the x-axis and 10 on the y-axis*/
+
+-Translate
+transform: translate(200px, 100px); /*200px on the x-axis and 100 on the y axis*/
+
+
+-3D Rotate
+transform: rotateX(30deg);
+transform: rotateY(30deg);
+transform: rotateZ(30deg);
+
+transform: rotateX(30deg) rotateY(30deg) rotateZ(30deg);
+
+-3D Translate
+transform: translate(30px);
+
+-Perspective
+.box {
+    background-color: red;
+    transform: perspective(600px) rotateY(45deg);
+}
+
+#
+## Transitions
+#
+.box {
+    display: block;
+    width: 100px;
+    height: 100px;
+    background-color: #0000FF;
+}
+
+.box:hover {
+    width: 200px;
+    height: 200px;
+    background-color: #FFCCCC;
+    transition: width 2s, height 2s, background-color 2s;
+}
+
+-Transition-property
+transition-property: width, height;
+
+-Transition-Duration
+transition-duration: 0.5s;
+transition-duration: 0.5s, 30s, 200ms;
+
+-transition-timing-function
+transition-timing-function: ease;
+transition-timing-function: ease-in;
+transition-timing-function: ease-out;
+transition-timing-function: ease-in-out;
+transition-timing-function: linear;
+transition-timing-function: step-start;
+transition-timing-function: step-end;
+
+-transition-delay
+transition-delay: 5s;
+
+Combine properties
+transition: [transition-property] [transition-duration] [transition-timing-function] [transition-delay];
+
+transition: background-color 2s ease-out 1s;
+transition: all 0.3s ease;
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions
+
+div {
+    transition: <property> <duration> <timing-function> <delay>;
+}
+
+
+# Animation with css
+@keyframes sunrise { 
+      /* rule sets go here … */ 
+}
+
+@keyframes sunrise { 
+    0% { 
+       margin-bottom: 0;
+      margin-left: 340px; 
+       background: #f00; 
+    }  
+    33% { 
+       margin-bottom: 340px; 
+       margin-left: 340px; 
+       background: #ffd630; 
+    }  
+    66% { 
+       margin-bottom: 340px; 
+       margin-left: 40px; 
+       background: #ffd630; 
+    }  
+    100% { 
+       margin-bottom: 0; 
+       margin-left: 40px; 
+       background: #f00; 
+    }
+}
+
+-Associating the animation name with an element
+#sun { 
+     animation-name: sunrise;
+ }
+-The animation duration and timing function
+#sun { 
+      animation-name: sunrise; 
+      animation-duration: 10s;
+      animation-delay: 1s; 
+      animation-timing-function: ease;
+      animation-fill-mode: forwards; /*retain finishing property values*/ 
+}
+
+# demo
+http://www.impressivewebs.com/demo-files/css3-animated-scene/
+http://www.leemunroe.com/css3-animations/
+https://css-tricks.com/snippets/css/keyframe-animation-syntax/
+http://tympanus.net/codrops/2013/05/22/examples-of-pseudo-elements-animations-and-transitions/
+http://tympanus.net/codrops/2012/08/08/circle-hover-effects-with-css-transitions/
+http://tympanus.net/codrops/2011/10/19/blur-menu-with-css3-transitions/

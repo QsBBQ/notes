@@ -1,0 +1,186 @@
+total box width = left margin + right margin + left border + right border + left padding + right padding + content width
+total box width = left margin + right margin + content width
+
+
+#Border box useful for resizing
+div {
+    box-sizing: border-box;
+}
+
+div {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+# Position and flow
+-Static
+
+-Relative
+  allows to offset elements in a certain direction
+-Absolute
+  break flow of page
+-Fixed
+  It will not relate to any other elements on page.
+
+#link
+http://html.net/tutorials/css/lesson14.php
+example
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div.relative {
+    position: relative;
+    width: 400px;
+    height: 200px;
+    border: 3px solid #73AD21;
+}
+
+div.absolute {
+    position: absolute;
+    top: 80px;
+    right: 0;
+    width: 200px;
+    height: 100px;
+    border: 3px solid #73AD21;
+}
+</style>
+</head>
+<body>
+
+<h2>position: absolute;</h2>
+
+<p>An element with position: absolute; is positioned relative to the nearest
+positioned ancestor
+(instead of positioned relative to the viewport, like fixed):</p>
+
+<div class="relative">This div element has position: relative;
+  <div class="absolute">This div element has position: absolute;</div>
+</div>
+
+</body>
+</html>
+
+# Fixed example
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div.fixed {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    border: 3px solid #73AD21;
+}
+</style>
+</head>
+<body>
+
+<h2>position: fixed;</h2>
+
+<p>An element with position: fixed; is positioned relative to the viewport, which means it always stays in the same place even if the page is scrolled:</p>
+
+<div class="fixed">
+This div element has position: fixed;
+</div>
+
+</body>
+</html>
+
+ # Stylesheet loading
+ The browser loads stylesheets in this order:
+ 1.  External style sheet
+ 2.  Internal style sheet
+ 3. Inline Inline beats internal and internal beats external!
+
+ -ids are more specific than classes and classes are more specific than elements.
+ -classes are considered more specific than elements.
+ -ids are considered the most specific because they are unique.
+
+
+ # MEDIA
+ <img src="lion.jpg" id="img1" height="250" width="250">
+
+ body {
+    background-image: url("paper.gif");
+    background-color: #cccccc;
+}
+# cover keeps full image size
+# contain scale with window size
+
+# css filters
+Most filter values fall between 0 and 1
+-greyscale
+  -webkit-filter: grayscale(1);
+-blur
+  -webkit-filter: blur(5px);
+-sepia
+  -webkit-filter: sepia(1);
+-hue-rotate
+  -webkit-filter: hue-rotate(279deg);
+-saturate
+  -webkit-filter: saturate(.9);
+-opacity
+  -webkit-filter: opacity(.5);
+-brightness
+  -webkit-filter: brightness(.9);
+-contrast
+  -webkit-filter: contrast(1);
+
+original: unfiltered;
+
+## VIDEO
+
+.mp4 for browsers Safari, IE, Chrome
+.ogv for browsers Firefox, Chrome, Opera
+.webm for browsers Firefox, Chrome, Opera
+
+<video controls= "controls">
+    <source src="video/Rabbit_MP4.mp4"/>
+</video>
+
+<video controls= "controls">
+    <source src="video/Rabbit_MP4.mp4" type="video/mp4"/>
+    <source src="video/Rabbit_OGV.ogv" type="video/ogg"/>
+    <source src="video/Rabbit_WEBM.webm" type="video/webm"/>
+</video>
+
+preload="none" <!-- Do not preload any media. -->
+preload="metadata" <!-- Preload just metadata (dimensions, first frame, duration etc.) -->
+preload="auto" <!-- Preload the whole file. -->
+
+<video controls= "controls" poster= "imgs/jazzcats.jpg">
+    <source src="video/Rabbit_MP4.mp4" type/>
+    <source src="video/Rabbit_OGV.ogv"/>
+    <source src="video/Rabbit_WEBM.webm"/>
+</video>
+
+<video controls= "controls" autoplay>
+
+#t=[start_time][,end_time]
+<source src="video/WEBM_Bunny.mp4#t=45,55" type="video/mp4"/>
+
+# AUDIO
+<audio controls= "controls">
+ <source src="celiband.mp3" type="audio/mpeg; codecs=mp3"/>
+ <source src="celiband.oga" type="audio/ogg; codecs=vorbis"/>
+ <!-- add other fallback solution here, eg. Your browser does not support the
+ <code>audio</code> element -->
+</audio>
+
+preload="none" <!-- Do not preload any media. -->
+preload="metadata" <!-- Preload just metadata (dimensions, first frame, duration etc.) -->
+preload="auto" <!-- Preload the whole file. -->
+
+Audio tag properties autoplay, controls, loop, preload, src
+
+mp3 ie, chrome, safari
+wav firefox, chrome, safari, opera
+h.264 all browsers
+vp8 firefox, chrome, opera
+
+loop
+autoplay
+poster

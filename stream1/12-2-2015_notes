@@ -1,0 +1,158 @@
+## User Experience
+## UX
+GARRETT’S ELEMENTS OF UX STACK
+Concrete to abstract.
+-Surface
+  The Surface Layer describes finished visual design aspects.
+-Skeleton
+  The Skeleton describes screen layout and functional compartments in the screen.
+-Structure
+  Structure defines navigation from place to place in the User Interface.
+-Scope
+  The places in the User Interface are built to support user task-centric scope.
+-Strategy
+  Business goals drive user constituencies and contexts supported to form strategy.
+
+##User Experience
+##User Experience determines how a person feels when interacting with a system.
+
+GOALS, TASKS, AND (Software product[TOOLS])
+
+## gocar.ie
+
+# Strategy
+  -Business Goals
+    Carshare service for everyone
+  -User Constituencies
+    Everyone,
+    Urban dweller
+    one car family
+    sme
+    corporations
+  -Usage contexts
+    There when you need a car.
+# Scope
+  -User tasks
+    Join
+    login
+    find gocars
+    book a car
+    pay/prices
+
+# Structure
+  -structural diagram
+# Skeleton
+  -Wireframe interface
+# Surface
+  Visual deisgn concepts
+
+##Users
+  -USER CENTERED DESIGN
+    This refers to a class of methodologies where design decisions are based on some tangible user model. That user model must be based on the research of the users of the application.
+  -Designers
+    UX designers are primarily concerned with how the product feels.
+    Unlike UX designers who are concerned with the overall feel of the product, UI designers are particular about how the product is laid out.
+    A visual designer is the one who pushes pixels.
+  -Understanding the users
+    To understand our users more, we can investigate them to try to understand their motives and needs.
+    We can group them in a general manner or drill right down to create personas.
+    -Actor&Goal
+      Often a job title or the common name for the type of user in a system.
+
+      Example:
+
+      On-line Shopper: browses and purchases merchandise online
+    -user role
+      A short name describing a user in pursuit of a goal – users change roles as their goals change.
+
+      Casual Browser:  passes time by browsing products online
+      Comparison Shopper: compare prices and features for items he/she wishes to buy
+      Gift Shopper: finds a gift for someone that likes the types of products a website sells
+      Impatient Buyer: finds what he/she needs and gets through the checkout process quickly
+    -user profile
+      Adding summary information about the types of users who fill a role or perform as an actor begins a process of “profiling”.
+
+      Users: 50,000 customers visit this sporting goods website monthly
+      Activities: browsing, price comparing, gift shopping, handling returns
+      Computer Skills: vary wildly from first time users to expert – although moderate computer skills are typical
+      Domain expertise: typical customers are avid outdoor enthusiasts
+    -persona
+      Choosing specific characteristics of a person and compiling those into a archetypal description of that person creates a strong design target.
+
+  -Building personas
+    Personas are based on research, e.g. interviews, contextual enquiry, observation, focus groups, surveys, literature reviews, etc.
+    Personas:
+
+      Describe users’ behavioural patterns, goals, and motivation
+      Are represented as individual people
+      Express and focus on the major needs and expectations of the most important user groups
+      Give a clear picture of the user’s expectations and how they’re likely to use the site
+      Aid in uncovering universal features and functionality
+    From the user research, we can construct personas and a User Story, which allow us to recreate the user experience for a very specific user.
+      What attributes do our users have in common?
+      What attributes vary within our user group?
+
+-Actors
+  Everyone that needs a car. personal/business
+-roles
+  Business user
+  commuter
+  person on vacation
+-profiles
+  Users: thousands of single car families need a car
+  Activities: going to a event
+  computer skills: some
+  domain expertise: normal person
+-personas
+  What would Bob think of this?
+  Are we meeting bobs needs?
+  Will Bob achieve his goal?
+
+#Usability
+  Usability refers to the ability of a specific type of user to be able to effectively carry out a task using a product.
+  -Design and usability principles
+    There are existing and evolving standards for interaction design.
+    One of the ‘Gurus’ of usability and interaction design is Jakob Nielsen.
+    He has developed ‘10 Usability Heuristics for User Interface Design’.
+    They are called “heuristics” because they are broad rules of thumb and not specific guidelines.
+    -visiblity of system status
+       The system should always keep users informed about what is going on,
+       through appropriate feedback within reasonable time.
+    -Match between system and the real world
+        The system should speak the users’ language, with words, phrases and concepts familiar to the user, rather than system-oriented terms.
+        Follow real-world conventions, making information appear in a natural and logical order.
+    -User control and freedom
+        Users often choose system functions by mistake and will need a clearly marked “emergency exit” to leave the unwanted state without having to go through an extended dialogue.
+        Support undo and redo.
+    -Consistency and standards
+        Users should not have to wonder whether different words, situations, or actions mean the same thing.
+        Follow platform conventions.
+    -Error prevention
+        Even better than good error messages is a careful design which prevents a problem from occurring in the first place.
+    -Recognition rather than recall
+        Minimize the user’s memory load by making objects, actions, and options visible. T
+    -Flexibility and efficiency of use
+        Accelerators – unseen by the novice user – may often speed up the interaction for the expert user such that the system can cater to both inexperienced and experienced users.
+    -aesthetic and minimalist design
+        Dialogues should not contain information which is irrelevant or rarely needed.
+    -Help users recognize diagnose and recover errors
+        Error messages should be expressed in plain language (no codes)
+    -Help and Documentation
+        provide help and documentation
+    http://designingwebinterfaces.com/6-tips-for-a-great-flex-ux-part-5
+    http://designingwebinterfaces.com/explore
+
+Identify needs
+design
+build prototype
+evaluate
+
+## Band project
+  Actors: main actors weddings secondary corporate events
+  Weddings, corporate
+  event schedule
+  contact
+  -Persona
+    What would a wedding planner/couple/family look for?
+      quality, cost, schedule
+    What would a corporate planner look for?

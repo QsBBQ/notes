@@ -1,0 +1,158 @@
+### Forms
+
+Topics include:
+
+What is a Form?
+Input Types
+Other Form Tags
+Exploring input Attributes
+Numbers and Patterns
+Making Choices
+
+-HTML Forms
+  -The Basics
+  An opening form tag.
+  A list of input types, followed by a submit.
+  A closing form tag.
+  <form id="UserRegForm" action="server_side_script.php" method="post">
+   Firstname:<input type="text" name="fname"/>
+   Surname:<input type="text" name="sname"/>
+   Email:<input type="text" name="email"/>
+   <input type="submit" value="submit"/>
+   </form>
+  -Attributes
+    -form
+      -action  ie. script
+      -method  post, get
+    -input
+      -type  text, submit
+      -id
+      -value
+    -Input types
+      -text
+        Firstname:<input type="text" name="fname"/>
+      -submit
+        <input type="submit" value="submit"/>
+      -other input types
+        -date
+        -color
+        text
+        number
+        password
+        url
+        email
+        search
+        tel (telephone)
+        date
+        color
+        -password type
+          <input id="password" name="password" type="password" />
+        -email type
+          <input id="email" name="email"  type="email"/>
+        -url type
+          <input name="website"  type="url"/>
+      -label
+        <label></label>
+        example
+        <label for="userName"> Username:</label>
+        <input type="text" id="userName"  name="userName"/>
+      -fieldset
+        <fieldset></fieldset>
+        example
+        <fieldset>
+          <!-- set of related fields  -->
+        </fieldset/>
+     -legend
+     <fieldset>
+       <legend> Login </legend>
+       <!-- set of related fields  -->
+     </fieldset/>
+
+  -Exploring input attributes
+    -placeholder
+      -<input id="email" name="email" type="email" placeholder="Enter your Email here"/>
+    -autocomplete
+      -<input id="name" name="name" type="text" autocomplete = "on"/>
+    -required
+      <input type="text" name="name" required>
+    -autofocus
+      <input id="email" name="email" type="email" autofocus placeholder="Email"/>
+  -Numbers and Patterns
+    -Max and Min
+      <input type="number" min="0" max="120" name="age"/>
+    -Pattern
+      -Patterns work with the following inputs:
+        text
+        Search
+        url
+        tel
+        email
+        password
+        -example
+        valid input 1ABC
+        <input name="social security number" type="text"
+         pattern="[0-9][A-Z]{3}" title="Single number followed by three
+         Uppercase letters."/>
+        valid input 1234567A
+        <input name="passport" type="text" pattern="[0-9]{7}[A-Za-z]{1}"
+         title="Seven numbers followed by a single upper or lower case
+         letter."/>
+        -Syntax
+            [0-9] Number from 0-9
+            [A-Z] Uppercase Letter
+            [a-z] Lowercase Letter
+            [A-Za-z] Uppercase or Lowercase
+            {1} a single instance of
+            {3} sequence of three
+      -Range
+        <input type="range" min="0" max="100"/>
+  -Making Choices
+    -Other choices
+      -checkboxes
+        <input type="checkbox" value="Saphire"/>Saphire
+        <input type="checkbox" value="Jade"/>Jade
+        <input type="checkbox" value="Quartz"/>Quartz
+        <input type="checkbox" value="Emerald"/>Emerald
+        <input type="checkbox" value="Ruby"/>Ruby
+      -radiobuttons
+        <input type="radio" name="tea" value="Tea"/>Tea
+        <input type="radio" name="tea" value="Lemon Tea"/>Lemon Tea
+        <input type="radio" name="tea" value="Nettle Tea"/>Nettle Tea
+      -Select boxes
+        <label for="currency">Currency:</label>
+        <select id="currency">
+           <option value="euro">Euro</option>
+           <option value="dollar">Dollar</option>
+           <option value="pound">Pound</option>
+           <option value="yen">Yen</option>
+           <option value="rupee">Rupee</option>
+           <option value="pesos">Pesos</option>
+           <option value="duckets">Duckets</option>
+           <option value="guilders">Guilders</option>
+        </select>
+        <optgroup label="Popular">
+            <option value="euro">Euro</option>
+            <option value="dollar">Dollar</option>
+            <option value="pound">Pound</option>
+            <option value="yen">Yen</option>
+        </optgroup>
+
+        <optgroup label="more">
+            <option value="rupee">Rupee</option>
+            <option value="pesos">Pesos</option>
+            <option value="duckets">Duckets</option>
+            <option value="guilders">Guilders</option>
+        </optgroup>
+      -datalist
+        <input list="browsers" name="browser">
+         <datalist id="browsers">
+            <option value="Internet Explorer">
+            <option value="Firefox">
+            <option value="Chrome">
+            <option value="Opera">
+            <option value="Safari">
+         </datalist>
+      -focus
+        :focus{
+              background-color: #FFECE9;
+             }

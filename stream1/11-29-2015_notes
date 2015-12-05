@@ -1,0 +1,211 @@
+## Semantic Web & Fonts – Intro
+Semantic Web
+Creating a Landing Page
+Font manipulation
+Text attributes
+Measurements
+
+# Semantic tags
+To help, the W3C thought it would be great
+if we didn’t use divs for everything and instead used more semantically relevant tags.
+For example, instead of using: <div id = “navigation”>, simply use <nav>.
+This is the basic principle behind the new semantic tags.
+
+-<figure> and <figcaption> elements
+<figure>
+   <img src="/myImage.jpg" alt="My example of an image">
+</figure>
+
+<figure>
+   <img src="/myCaptionImage.jpg" alt="My image with a caption">
+   <figcaption>My image with a caption.</figcaption>
+</figure>
+
+# HTML5 document structure
+Header at the top of the page containing the heading or logo.
+The main content, which is the principle reason for the site.
+A number of sidebars, with content relevant to the page’s main content or the site as a whole.
+Navigation across the top or down the side of the page.
+A footer across the bottom with copyright info and contact details.
+
+-example
+<body>
+     <header>
+       <nav>
+       </nav>
+     </header>
+     <aside>
+     </aside>
+
+     <section>
+       <article>
+       </article>
+
+       <article>
+       </article>
+     </section>
+     <footer>
+     </footer>
+</body>
+
+# NAV
+  <nav></nav>
+  example
+  <nav>
+  <ul>
+    <li><a href="#">home</a></li>
+    <li><a href="#">blog</a></li>
+    <li><a href="#">portfolio</a></li>
+    <li><a href="#">about</a></li>
+  </ul>
+  </nav>
+
+# Section
+  <section></section>
+# Article
+  <article></article>
+
+  <section id="main">
+     <article>
+       <!-- first blog post content goes here -->
+     </article>
+     <article>
+       <!-- second blog post content goes here -->
+     </article>
+     <article>
+       <!-- third blog post content goes here -->
+     </article>
+  </section>
+
+  <article>
+     <section id="intro">
+     </section>
+     <section id="content">
+     </section>
+     <section id="summary">
+     </section>
+  </article>
+
+# Aside
+  <aside></aside>
+  sidebars could be notes etc.
+
+# Footer
+  <footer></footer>
+
+## Fonts
+-font-family
+  font-family: lato, Verdana, sans-serif;
+
+-font-size
+  font-size: value;
+  xx-large
+  x-large
+  larger
+  large
+  medium
+  small
+  smaller
+  x-small
+  xx-small
+  px (pixels)
+  % (percent)
+
+-font-style
+  font-style: italic;
+  normal
+  italic
+  oblique
+
+-font-weight
+  font-weight: bold;
+  lighter
+  normal
+  100 – 900  (400 is normal)
+  bold
+  bolder
+
+-color
+  Color name (red, black…)
+  Hex number (#ff0000, #000000)
+  RGB color code (rgb(255, 0, 0), rgb(0, 0, 0))
+
+-@FONT-FACE
+  @font-face {
+  font-family: 'MyWebFont';
+  src: url('myfont.woff2') format('woff2'),
+  url('myfont.woff') format('woff'),
+  url('myfont.ttf') format('truetype');
+  }
+
+  body {
+  font-family: 'MyWebFont', Fallback, sans-serif;
+  }
+
+-Google-fonts
+https://developers.google.com/fonts/docs/getting_started?hl=en
+  <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  body {
+  font-family: 'Open Sans', sans-serif;
+  }
+
+# Text Attributes
+  -text-align
+    text-align: value;
+      left
+      right
+      center
+      justify
+  -text-decoration
+    text-decoration: value;
+      none
+      underline
+      line through
+  -text-indent
+    text-indent: 20px;
+  -text-transform
+    text-transform: value;
+    none
+    capitalise (capitalises the first letter of each word)
+    lowercase
+    uppercase
+
+# Measurements
+  -relative lengths
+    These units can change their size according to the size of the screen.
+    percent(%), em, and rem
+  -absolute lengths
+    These units are fixed in relation to each other and are anchored to a physical measurement.
+    px unit
+    %:  Percentage values are always relative to the parent container. They are most often used for the text, but are also often used to size container elements.
+    em:  These values are relative to the font size of the element itself.
+    rem (root em): These values are relative to the font size of the root element (For example, <html> is the root element of a HTML document)
+  -EM Examples
+
+   .5 em = 7 pixels
+  1.5 em = 21 pixels
+  2 em = 28 pixels
+
+        html {
+         font-size: 12px; /*declaring root element in pixels*/
+      }
+
+      h1 {
+         font-size: 2rem; /*displayed at 24px*/
+      }
+
+      h2 {
+         font-size: 1.5rem; /*displayed at 18px*/
+      }
+
+      h3 {
+         font-size: 1.25rem; /*displayed at 15px*/
+      }
+
+      h4 {
+         font-size: 1rem; /*displayed at 12px*/
+      }
+
+http://www.developer.com/lang/understanding-the-proper-way-to-lay-out-a-page-with-html5.html
+http://html5doctor.com/lets-talk-about-semantics/
+http://designshack.net/articles/css/a-beginners-guide-to-using-google-web-fonts/
