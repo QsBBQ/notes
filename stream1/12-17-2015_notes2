@@ -1,0 +1,81 @@
+## Data Visualization and D3!!
+
+  -Intro
+    It is like summoning a magical, visual genie out of an inscrutable data bottle.
+    What is D3
+    SVG
+    D3 Setup
+    Selectors with Chrome Developer tools
+  -What is D3
+    D3 defined
+    D3 stands for Data-Driven Documents.
+    bring that data to life using HTML, CSS, and SVG (which we will look at very soon).
+    -D3 does the following
+      Loads the data
+      Binds the data to elements
+      Transforms the data to a visual output
+      Transitions elements based upon triggered events
+    You provide the concept, you craft the rules, and D3 executes it—without telling you what to do.
+
+ -Scalable Vector Graphics
+   SCALABLE VECTOR GRAPHICS (SVG)
+   (free program that can draw svg's Inkscape )
+   -The SVG Element
+     SVG provides tags for circles, rectangles, and lines etc.
+     <svg width = "500" height = "500">
+     </svg>
+  Beside <rect> there are a number of other elements we can use.
+  These include circle, line, ellipse, path, and text.
+
+  SVG takes many of its properties from the world of graphics, which has its own terminology.
+  We have seen this concept in examples such as where css would use border, svg uses stroke, and for background-color they use fill.
+  SVG also inherit positioning from the graphics world. Where  x = 0,  y = 0 is the top left corner, not the bottom left as one might assume, as shown below:
+  -Line()
+    <line x1="120" y1="20" x2="400" y2="220"/>
+  -Text()
+    <text x="200" y="40" class="svgText">SVG Text!</text>
+  -Overlapping
+    As you have probably noticed, when elements overlap, the order of the elements dictate which element ends up on top.
+    Each element is stacked above its predecessor.
+  -Styling SVG Elements
+    -fill
+      hex, rgb, rgba
+    -stroke
+      hex, rgb, rgba
+    -stroke-width
+      default px
+    -opacity
+      0 or 1
+
+  -D3 Setup
+    http://d3js.org/ or https://github.com/mbostock/d3
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    or if downloaded
+    <script type="text/javascript” src="js/d3.min.js”></script>
+
+  -links
+    https://www.dashingd3js.com/basic-building-blocks
+    https://www.dashingd3js.com/adding-an-svg-element
+    https://www.dashingd3js.com/svg-group-element-and-d3js
+    https://www.youtube.com/watch?v=b9s7B7HYXhc
+    SVG Shapes: http://www.w3schools.com/svg/svg_examples.asp
+    https://www.dashingd3js.com/table-of-contents
+    http://www.recursion.org/d3-for-mere-mortals/
+    https://square.github.io/intro-to-d3/web-standards/
+
+    -D3 selectors
+      d3.select("p")
+      var body = d3.select("body")
+      body.append("p").text("I love data")
+      var myDiv = d3.select("div")
+      myDiv.append("p").text("paragraph in div")
+      myDiv.attr("style", "background-color:#ddd")
+      myDiv.attr("style", "border:solid 4px black")
+      myDiv.attr("style", "background-color:#ddd", "border:solid 4px black")
+      myDiv.classed("smallBox", true);
+      myDiv.classed("smallBox", false);
+      -note
+        Attr will overwrite any classes the element already has which can be a problem.
+        The classed method will append a class onto those already available.
+      - myDiv.remove()

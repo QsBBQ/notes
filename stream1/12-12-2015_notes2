@@ -1,0 +1,70 @@
+### Jquery events
+   -Understand events
+   -Understand effects
+   -Understand method chaining
+# Events
+    Following are the examples events:
+
+    A mouse click
+    A web page loading
+    Taking mouseover an element
+    Submitting an HTML form
+    A keystroke on your keyboard
+    etc.
+# events handlers
+    https://api.jquery.com/category/events/
+    .click()
+    .keydown()
+    .keypress()
+    .keyup()
+    .mouseover()
+    .mouseout()
+    .mouseenter()
+    .mouseleave()
+    .scroll()
+    .focus()
+    .blur()
+    .resize()
+  -click event
+    $("p").click(function(){  // When I click on <p> run this code
+});
+  -the on event
+    $("p").on("click",function(){  // When I click on <p> run this code
+});
+  -mouseenter & mouseleave
+  $("p").mouseenter(function(){  // When I move the mouse over <p> run this code
+  });
+
+  $("p").mouseleave(function(){  // When I move the mouse outside of <p> run this code
+  });
+### Animation with jquery
+  -show
+    $("#theButton").show();
+    $('#theButton').show();
+    $('#theButton').show('slow');
+    $('#theButton').show('medium');
+    $('#theButton').show('fast');
+    $('#theButton').show(1000);
+  -hide
+    $('#theButton').hide();
+    $('#theButton').hide('slow');
+    $('#theButton').hide('medium');
+    $('#theButton').hide('fast');
+    $('#theButton').hide(1000);
+  -toggle
+    $('#theButton').toggle();
+    $('#theButton').toggle(1000); // We can also use slow, medium or fast
+  -slidedown
+
+  -slideup
+    $('#theButton').slideUp();
+  -slidetoggle
+    $('#theButton').slideToggle();
+  -fadein
+    $('#theButton').fadeIn();
+  -fadeout
+    $('#theButton').fadeOut();
+  -fadetoggle
+    $('#theButton').fadeToggle();
+  -fadeto
+    $('#theButton').fadeTo(1000, 0.5);

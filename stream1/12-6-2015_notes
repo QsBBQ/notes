@@ -1,0 +1,127 @@
+## Responsive grids
+  Phones <768px .col-xs-
+  Tablets >= 768px .col-sm-
+  desktops >= 992px .col-md-
+  desktops >= 1200px .col-lg-
+
+-extra-small col-xs-x
+  <div class="col-xs-12">
+    <h2>HTML</h2>
+    <p>HTML is a major Web technology that
+        defines the structure of....</p>
+    <a href="#" class="btn btn-success">
+       Learn</a>
+  </div>
+-small col-sm-x
+  <div class="col-sm-6">
+    <h2>HTML</h2>
+    <p>HTML is a major Web technology that
+       defines the structure of....</p>
+    <a href="#" class="btn btn-success">
+       Learn</a>
+  </div>
+-Medium col-md-x
+  <div class="col-md-4">
+    <h2>HTML</h2>
+    <p>HTML is a major Web technology that
+     defines the structure of....</p>
+    <a href="#" class="btn btn-success">
+      Learn</a>
+  </div>
+-Large col-LG-X
+  <div class="col-lg-3">
+    <h2>HTML</h2>
+    <p>HTML is a major Web technology
+      that defines the structure of....</p>
+    <a href="#" class="btn btn-success">
+      Learn</a>
+  </div>
+
+-Combined
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-6">
+      <h2>Bootstrap</h2>
+      <p>Bootstrap makes front-end web development... </p>
+      <a href="#" class="btn btn-danger">Learn</a>
+  </div>
+
+-Visible and hidden elements
+  <img class="’hidden-xs" src="’images.png’" alt="" />
+-Media queries
+  /*==================================================
+  =            Bootstrap 3 Media Queries             =
+  ==================================================*/
+  /* Large desktops and laptops */
+  @media (min-width: 1200px) {
+  // css specific properties col-lg-*
+  }
+
+  /* Landscape tablets and medium desktops */
+  @media (min-width: 992px) and (max-width: 1199px) {
+  // css specific properties col-md-*
+  }
+
+  /* Portrait tablets and small desktops */
+  @media (min-width: 768px) and (max-width: 991px) {
+  // css specific properties col-sm-*
+  }
+
+  /* Landscape phones and portrait tablets */
+  @media (max-width: 767px) {
+  // css specific properties col-xs-*
+  }
+
+  /* Portrait phones and smaller */
+  @media (max-width: 480px) {
+  // css specific properties col-xs-* or none for default
+  }
+-The footer
+  <footer class="col-12">
+      <h2>Footer</h2>
+      <p>Copyright</p>
+  </footer>
+  footer{
+            padding-top: 5px;
+            background-color: #eee;
+            text-align: center;
+            height: 100px;
+  }
+
+-Jumbotron
+  <div class="jumbotron">
+   <div class="container">
+     <h1>My Jumbotron!!!</h1>
+     <p>A lightweight, flexible component... </p>
+     <p><a class="btn btn-primary btn-lg" href="#">Learn more</a></p>
+   </div>
+  </div>
+
+## Overriding bootstrap
+  Example
+  override the default margin-bottom setting
+  bootstrap.min.css
+  .navbar {
+     position: relative;
+     min-height: 50px;
+     margin-bottom: 20px;
+     border: 1px solid transparent;
+  }
+  style.css
+  .navbar {
+     margin-bottom: 10px;
+  }
+
+  Include css file after bootstrap
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bootstrap Example</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+http://startbootstrap.com/template-overviews/creative/
+
+http://www.w3schools.com/bootstrap/bootstrap_carousel.asp
+http://www.w3schools.com/bootstrap/bootstrap_modal.asp
+http://www.w3schools.com/bootstrap/bootstrap_scrollspy.asp

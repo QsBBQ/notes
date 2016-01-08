@@ -1,0 +1,39 @@
+## Form validation outside the form
+  In our form we will set two scope properties:
+
+  uniqueusername
+  uniqueemail
+  We will set these to true or false after our call to our backend service.
+  True is ok – but false will trigger an error message.
+
+  $scope.submitted = false;
+  $scope.uniqueusername = true;
+  $scope.uniqueemail = true;
+
+  $scope.registerForm = function(registerForm) {
+      if (registerForm.$valid) {
+             $scope.submitted = true;
+             //continue with form processing
+             //use a service to check for validity of username
+             $scope.uniqueusername = false; //will trigger error
+             //use a service to check for validity of email
+             $scope.uniqueemail = true;
+             if ($scope.uniqueusername &amp;&amp;
+                 $scope.uniqueusemail ) {
+                        // proceed to process form via backend service
+                        // if successful, route to validated page
+                        }
+             }
+      else {
+            console.log("form is invalid");
+            $scope.submitted = true;
+             }
+    }
+
+# $Location service
+  Angular has a service that allows us to route to a new location using the service $location.
+  We can add $location as a parameter to a controller and using its .path() function route to a new location (make sure the path is a valid route).
+
+      $location.path(‘location’);
+      ie. $location.path(‘/details/’+$scope.register.username);
+      

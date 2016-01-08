@@ -1,0 +1,204 @@
+# Constant Values
+    angular.module('moviesDBApp',
+    ['ngRoute','movieDBControllers','movieDBDirectives','movieDBServices'])
+    .constant("myMovieConfig", {
+          "moviesEndpoint" : "https://api.themoviedb.org/3/movie",
+          "apiKey": "35e16679c616a21b9ddebb66272c5902"
+      })
+
+      .controller('MovieTopRatedController',
+     function($scope,MovieListService,myMovieConfig) {
+         var url = myMovieConfig.moviesEndpoint + '/top_rated?api_key=' + myMovieConfig.apiKey;
+
+# Routing
+    .config(function($routeProvider) {
+
+             $routeProvider
+               .when('/popular', {
+                   templateUrl: 'templates/movies.html',
+                   controller: 'MovieListController'
+               })
+               .when('/upcoming', {
+                   templateUrl: 'templates/movies.html',
+                   controller: 'MovieUpcomingController'
+               })
+               .when('/topRated', {
+                   templateUrl: 'templates/movies.html',
+                   controller: 'MovieTopRatedController'
+               })
+               .when("/nowPlaying", {
+                   templateUrl: "templates/movies.html",
+                   controller: "MovieNowPlayingController"
+               })
+               .otherwise({redirectTo: '/popular'});
+        });
+
+# Create a custom directive
+  We want to create a directive that we can use to replace some of the code in movies.html.
+  Create a new folder under the templates directory called directives.
+
+# CREATING A GOOGLE MAP DIRECTIVE
+  We will use a google static map, see http://staticmapmaker.com/google/ for details.
+  We can add a map as an image.
+  We pass variables to the src attribute to build the map location.
+  To build the image, construct the src of the image as follows:
+
+  “https://maps.googleapis.com/maps/api/staticmap?center=<map address>
+  &zoom=<zoom>&size=<map dimensions>&markers=color:red|<map address>”
+
+  .controller('AboutController',function($scope) {
+    //
+       $scope.title = 'About Us';
+       $scope.maps = [{
+            address: 'Trinity College Dublin, Dublin',
+            zoom: 14,
+            width: 400
+            },{
+            address: '51st Street, New York, New York',
+            zoom: 14,
+            width: 400
+            }];
+      $scope.map = $scope.maps[0];
+    })
+
+    .directive('makeMap', function() {
+
+              var directive = {
+                    restrict: 'EA',
+                    templateUrl: 'templates/directives/map.html',
+                    scope: {
+                          map: '='
+                    },
+                    link: function(scope, element, attrs){
+                          console.log("in map directive link");
+                    },
+                    controller: function mapController($scope) {
+
+                                $scope.zoomIn = function(){
+                                      $scope.map.zoom++;
+                                };
+                                $scope.zoomOut = function(){
+                                      $scope.map.zoom--;
+                                };
+                                $scope.mapDimensions = function() {
+                                      if (!$scope.map.width)
+                                           var width = 300;
+                                      else
+                                           width = $scope.map.width;
+                                      if (!$scope.map.height)
+                                           var height = 300;
+                                      else
+                                           height = $scope.map.height;
+                                      return width + 'x' + height;
+                                }
+                          }
+                    };
+              return directive;
+         });
+
+  templates/directives/map.html
+    <div class='' style='position: relative'>
+
+      <img class='img-thumbnail' src=
+    "https://maps.googleapis.com/maps/api/staticmap?center={{map.address}}&amp;
+    zoom={{map.zoom}}&amp;size={{mapDimensions()}}&amp;markers=color:red|{{map.address}}"
+          class="img-responsive"/>
+          <br>
+          <div style='position: absolute; top: 1em; left: 0.6em'>
+                  <button style='padding: 4px 8px; opacity:0.8'
+                  class="btn btn-primary" ng-click="zoomIn()">
+                          <span class="glyphicon glyphicon-plus"></span></button>
+
+                  <button style='padding: 4px 8px; opacity:0.8'
+                  class="btn btn-primary" ng-click="zoomOut()">
+                          <span class="glyphicon glyphicon-minus"></span></button>
+          </div>
+    </div>
+
+   -about template
+     templates/about.html
+     <div class='container'>
+        <h1>{{title}}</h1>
+
+        <div class="row">
+              <div class="col-md-4" >
+                    <h1>Our Locations</h1>
+                    <select ng-model="map" ng-options="mapview.address for mapview in maps">
+                    </select>
+              </div>
+              <div class="col-md-4" >
+                    <h3>{{map.address}}</h3>
+              <!-- flexible map , map object defined in controller directive -->
+                    <make-map map="map"></make-map>
+              </div>
+        </div>
+        </div>
+
+  -app.js
+    .when('/about', {
+                  templateUrl: 'templates/about.html',
+                  controller: 'AboutController'
+       })
+  -style.css
+      select {
+      padding: 0.5em;
+      border-radius: 5px;
+      font-size: 1.4em;
+    }
+
+# Putting it all together
+  https://monumental.firebaseapp.com/#/
+  ChallengeA:
+    Bootstrap nav
+    <nav class="navbar navbar-inverse">
+     <div class='container' >
+          <div class="nav navbar-header">
+                         <a class="navbar-brand" href="#/home">MoviesDB</a>
+                          <button type="button" class="navbar-toggle"
+                                data-toggle="collapse"
+                                data-target="#myCollapsingList">
+                          <span class="sr-only">Toggle navigation</span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          </button>
+          </div>
+          <div class="collapse navbar-collapse" id="myCollapsingList">
+                 <ul class="nav navbar-nav navbar-right">
+                  <li><a  href="#/home">Home</a></li>
+                  <li><a  href="#/about">About</a></li>
+                  <li class="dropdown">
+                   <a  class="dropdown-toggle " data-toggle="dropdown"
+                                                role="button"
+                                         aria-haspopup="true"
+                                         aria-expanded="false">Movies
+<span class="caret"></span></a>
+                   <ul class="dropdown-menu"></span>
+                       <li><a href='#/popular'>Popular</a></li>
+                       <li><a href='#/upcoming'>Upcoming</a></li>
+                       <li><a href='#/nowPlaying'>Now Playing</a></li>
+
+                       <li><a href='#/topRated'>Top Rated</a></li>
+                    </ul>
+                   </li>
+                  </ul>
+            </div>
+      </div>
+   </nav>
+   # ChallengeB:
+     CREATING THE HOME PAGE
+   # ChallengeC: Error handling
+
+# Links!
+   Angular Documentation API reference and Developer Guide
+ The tutorial on the Angular site
+ John Papa’s Style Guide https://github.com/johnpapa/angular-styleguide
+ Google Static Map Generator http://staticmapmaker.com/google/
+ Angular Selection Menus https://docs.angularjs.org/api/ng/directive/ngOptions
+ MoviesDB API https://www.themoviedb.org/documentation/api
+ MoviesDB API http://docs.themoviedb.apiary.io/#
+ Practical guide to Angular Directives
+ Creating Custom Directives
+ http://www.ng-newsletter.com/posts/beginner2expert-directives.html
+ http://www.ng-newsletter.com/posts/beginner2expert-services.html
+ http://www.ng-newsletter.com/posts/beginner2expert-config.html

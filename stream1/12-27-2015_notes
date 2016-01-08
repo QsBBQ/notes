@@ -1,0 +1,386 @@
+# Form Selection menu
+  -options menu
+    <select ng-model="selectedCar">
+     <option  ng-repeat="car in cars" >{{car}}</option>
+    </select>
+    .controller('SelectionController',function($scope) {
+        $scope.cars = ['mini','ferrari','bmw','VW'];
+
+        $scope.selectedCar = $scope.cars[1];
+      ....
+      $scope.items = [{name: 'one', age: 30 },
+                { name: 'two', age: 27 },
+                { name: 'three', age: 50 }];
+
+      <select
+        ng-model="selectedItem" ng-options="item.name for item in items">
+      </select>
+
+      $scope.items = [{name: 'one', age: 30 },{ name: 'two', age: 27 },{ name: 'three', age: 50 }];
+
+      $scope.selectedItem = $scope.items[0];
+  -checkboxes
+    <label>Golf: <input type="checkbox" ng-model="checkboxModel.golf">
+    </label>
+    <label>Fishing: <input type="checkbox" ng-model="checkboxModel.fishing">
+    </label>
+    <label>Sailing: <input type="checkbox" ng-model="checkboxModel.sailing">
+    </label>
+
+    $scope.checkboxModel = {
+      fishing : true,
+      golf : true,
+      sailing: false
+    };
+    <input type="checkbox" ng-model="checkboxModel.vote"
+           ng-true-value="'up'" ng-false-value="'down'">
+
+  -radio button
+    <label>
+     <input type="radio" name=’clr’ ng-model="color.name"
+    value="red">Red</label><br/>
+    <label>
+     <input type="radio" name=’clr’ ng-model="color.name"
+    ng-value="specialValue">
+        Green
+    </label><br/>
+    <label>
+    <input type="radio" name=’clr’ ng-model="color.name" value="blue">Blue
+    </label>
+
+## Angular Services
+  Angular services allow us to segregate the creation of our model data and any associated business logic from the rest of our application.
+  Topics include
+
+        The Angular Service Module
+        The Angular $http service
+        The $http service in action
+        The MoviesDB API
+  -Angular service module
+    app.js
+      angular.module("mainApp", [‘myServices’]);//myServices contains our named services in
+                                        // service.js file
+    service.js
+          angular.module('myServices',[]).factory('MyService',function() {
+      // service logic here
+      });
+  -Factory Method
+    angular.module('myControllers',[]);
+    angular.module('myControllers').controller('MyController',function($scope,MyService) {
+    //  added our new student service
+    $scope.name = MyService.getName();  //private name
+    console.log(MyService.name); // name variable of service object
+    });
+
+    angular.module('myServices',[]).factory('MyService',function() {
+     // service logic here
+     var _privateName = ‘sean’; // private variable
+     var service = {} // empty object
+     service.name = ‘myServiceName’;
+     service.getName = function() {
+             return _privateName;
+         }
+     return service;
+    });
+  -Service Method
+    When you’re using Service, it is instantiated with the ‘new’ keyword.
+    angular.module('myControllers',[]).controller('MyController',function($scope,MyService) {
+    //  added our new student service
+    $scope.name = MyService.getName();  //private name
+    console.log(MyService.name); // name variable of service object
+    });
+
+    angular.module('myServices',[]).service('MyService',function() {
+     // service logic here
+     var _privateName = ‘sean’; // private variable
+
+     this.name = ‘myServiceName’;
+     this.getName = function() {
+             return _privateName;
+         }
+     return this;
+    });
+  -service.js
+    angular.module('collegeServices',[]).factory('StudentService',function() {
+    //
+    var student = {
+          firstName: "Rich",
+          lastName: "Richie",
+          fees: 500,
+          subjects: [{
+              name: 'Physics', marks: 70}, {
+              name: 'Chemistry', marks: 80}, {
+              name: 'Math', marks: 65}, {
+              name: 'English', marks: 75}, {
+              name: 'Hindi', marks: 67
+          }],
+          fullName: function () {
+                          return student.firstName + " " + student.lastName;
+          },
+          greeting: function(){
+                          return "Greetings " + student.fullName();
+                }
+      };
+      return { getStudent: function(){
+                                        return student}
+          };
+    });
+
+  -app.js
+    angular.module("collegeApp", ['collegeControllers','collegeServices']);
+  -controller.js
+    angular.module('collegeControllers',[]).controller('StudentController',function($scope,StudentService) {
+    //  added our new student service
+    $scope.student = StudentService.getStudent();
+    });
+  -Putting it all together
+    -index.html
+      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+      <script src="javascript/app.js"></script>
+      <script src="javascript/controller.js"></script>
+      <script src="javascript/service.js"></script>
+  -Example
+    http://code.runnable.com/Vc4FYwpNVCdJiq1s/angularjs-ng-repeat-example-with-service-for-javascript-and-angular-js
+  ## Angular $http service
+    We are going to take an in-depth look at the angular provided $http service.
+      it takes a request configuration and returns a promise.
+    -JAVASCRIPT PROMISES
+       A Promise object represents a value that may not be available yet, but will be resolved at some point in future.
+       It allows you to write asynchronous code in a more synchronous fashion.
+       For example, if you use the Promise API to make an asynchronous call to a remote web service you will create a Promise object,
+       which represents the data that will be returned by the web service sometime in the future.
+       Further, you can attach callbacks to the Promise object, which will be called once the actual data is available.
+    - The Angular $Q service
+      To illustrate how the innards of a Promise work, we will look at the angular service $q.
+      This is a service that allows the setting up of a promise and manages the resolution of the promise and the data that is returned from the promise once the process has completed.
+      The $q service has 3 main components.
+      -deferred
+        deferred() sets up a promise object.
+      -resolve
+        resolve() is used when the process underlying a promise is complete to return the data from the promise.
+        This will become available in the then() function when the promise is complete.
+      -reject
+        reject() is used if the process underlying a promise fails execute the reject function. This will terminate the promise.
+        Pass error messages as a parameter to the reject function.
+      -example $q and $timeout service
+        angular.module('ourServices',[])
+        .factory('OurPromise', function($q, $timeout) {
+
+        var getMessages = function() {
+          var deferred = $q.defer(); // set up the promise
+                                     // referenced by deferred.promise
+          // the function inside the timeout gets executed after delay 2000ms
+          $timeout(function() {
+            deferred.resolve([‘Its a’,’Promise’]);//return results
+          }, 2000);
+
+          return deferred.promise; //return the promise object
+        };
+
+        return {
+          getMessages: getMessages
+        };
+
+        });
+      -Using service in controller
+        angular.module('promiseControllers',[])
+        .controller('PromiseController', function($scope, OurPromise) {
+
+          OurPromise.getMessages().then(function(messages) {
+                     //messages is what is returned from resolve()
+                     $scope.messages = messages;
+          });
+        });
+      -Example
+        http://jsfiddle.net/lillylangtree/kvcnhmhh/
+      -Angular $http
+        The $http service uses the Promise API.
+        The $http service is a function which takes a single argument — a configuration object — that is used to generate an HTTP request and returns a promise.
+
+        -The $http request has a number of ‘actions’:
+          .get(url) – send a request to a server resource defined by url
+          .post(url,data) – post a request to a server resource with accompanying data
+
+          // Simple GET request example:
+           $http.get('/someUrl').
+            then(function(response) {
+              // this callback will be called asynchronously
+              // when the response is available
+            }, function(response) {
+              // called asynchronously if an error occurs
+              // or server returns response with an error status.
+            });
+
+          // Simple POST request example (passing data):
+             $http.post('/someUrl', {msg:'hello word!'}).
+               then(function(response) {
+                 // this callback will be called asynchronously
+                 // when the response is available
+               }, function(response) {
+                 // called asynchronously if an error occurs
+                 // or server returns response with an error status.
+               });
+
+
+         The Angular $http Service
+         angular services
+
+         THE ANGULAR $HTTP SERVICE
+
+         We are going to take an in-depth look at the angular provided $http service. While the details are different, it looks and behaves very much like the $.ajax() method in jQuery: it takes a request configuration and returns a promise.
+
+         jQuery uses its own internal deferred library, while AngularJS uses a paired-down version of the “q” library. The service is generally used to interact with server side processes to return and send data.  The service is an asynchronous process, so it’s important that we understand how Angular handles asynchronous processes. One of the ways is through the use of promises.
+
+
+         JAVASCRIPT PROMISES
+
+         Before looking at $http we’ll look at Promises, which $http implements. A Promise object represents a value that may not be available yet, but will be resolved at some point in future. It allows you to write asynchronous code in a more synchronous fashion. For example, if you use the Promise API to make an asynchronous call to a remote web service you will create a Promise object, which represents the data that will be returned by the web service sometime in the future. The caveat being that the actual data is not available yet. It will become available when the request completes and a response comes back from the web service. In the meantime, the Promise object acts like a proxy to the actual data. Further, you can attach callbacks to the Promise object, which will be called once the actual data is available.
+
+
+         THE ANGULAR $Q SERVICE
+
+         To illustrate how the innards of a Promise work, we will look at the angular service $q. This is a service that allows the setting up of a promise and manages the resolution of the promise and the data that is returned from the promise once the process has completed. The $q service has 3 main components.
+
+         COMPONENTS:
+
+         Click on the  items to expand
+
+         DEFERRED
+         RESOLVE
+         REJECT
+         reject() is used if the process underlying a promise fails execute the reject function. This will terminate the promise. Pass error messages as a parameter to the reject function.
+
+
+
+
+         Lets look at an example. The example uses the $q service and another angular service $timeout to insert a time delay into a simple function.
+         angular.module('ourServices',[])
+         .factory('OurPromise', function($q, $timeout) {
+
+           var getMessages = function() {
+             var deferred = $q.defer(); // set up the promise
+                                        // referenced by deferred.promise
+             // the function inside the timeout gets executed after delay 2000ms
+             $timeout(function() {
+               deferred.resolve([‘Its a’,’Promise’]);//return results
+             }, 2000);
+
+             return deferred.promise; //return the promise object
+           };
+
+           return {
+             getMessages: getMessages
+           };
+
+          });
+
+
+         Let’s now use this Service in a controller:
+
+         angular.module('promiseControllers',[])
+         .controller('PromiseController', function($scope, OurPromise) {
+
+             OurPromise.getMessages().then(function(messages) {
+                        //messages is what is returned from resolve()
+                        $scope.messages = messages;
+             });
+          });
+         We’ll use an example to illustrate, with some ng-hide/shows to illustrate the timeline of the processing.
+
+
+         ANGULAR $HTTP
+
+         The $http service uses the Promise API. The $http service is a function which takes a single argument — a configuration object — that is used to generate an HTTP request and returns a promise.
+
+         The $http request has a number of ‘actions’:
+
+         .get(url) – send a request to a server resource defined by url
+         .post(url,data) – post a request to a server resource with accompanying data
+
+
+         // Simple GET request example:
+          $http.get('/someUrl').
+           then(function(response) {
+             // this callback will be called asynchronously
+             // when the response is available
+           }, function(response) {
+             // called asynchronously if an error occurs
+             // or server returns response with an error status.
+           });
+
+
+         // Simple POST request example (passing data):
+         $http.post('/someUrl', {msg:'hello word!'}).
+           then(function(response) {
+             // this callback will be called asynchronously
+             // when the response is available
+           }, function(response) {
+             // called asynchronously if an error occurs
+             // or server returns response with an error status.
+           });
+
+
+         -The response object has these properties:
+
+         data – {string|Object} – The response body containing results data
+         status – {number} – HTTP status code of the response.
+         headers – {function([headerName])} – Header getter function.
+         config – {Object} – The configuration object that was used to generate the request.
+         statusText – {string} – HTTP status text of the response.
+
+         promise.then(
+         function(results){// success callback function
+               console.log('Got data! Promise fulfilled.',results);
+                         },
+         function(error){ //error callback function
+               console.log('Promise rejected.');
+               console.log(error.message);
+         });
+         -Handling Errors
+           promise.then(function(result) {
+            console.log('Got data!', result);
+            }).catch(function(error) {
+            console.log('Error occurred!', error);
+            });
+    ## $http service in action
+      student.json
+        {"firstName":"Rich","lastName":"Richie","fees":500,
+        "subjects":[{"name": "Physics","marks": 70},
+                        {"name": "Chemistry","marks": 80},
+                        {"name": "Math","marks": 65},
+                        {"name": "English","marks": 75},
+                        {"name": "Hindi","marks": 67}]
+         }
+      -service.js
+        -Don't forget the []
+        angular.module('collegeServices', []).factory('RemoteStudentService',function($http) {
+         //  return Student Service
+         return  { getStudent: getStudent};
+
+         function getStudent() {
+                      return $http.get('student.json'); // returns a promise
+              }
+        });
+      -controller.js
+      angular.module('collegeControllers')
+        .controller('RemoteStudentController',function($scope,RemoteStudentService)
+        {
+            //
+              $scope.student = {};
+              RemoteStudentService.getStudent()
+                              .then( function(result) {
+                                    //promise complete
+                                    $scope.student=result.data;
+                                    })
+                              .catch( function(error) { console.log('error', error)});
+
+              $scope.greeting = function(){
+                      return "Greetings " + $scope.student.firstName + " " + $scope.student.lastName;
+              }
+              $scope.showResults = function(){
+              return ($scope.results ? $scope.results=false : $scope.results=true)
+              }
+        $scope.aGradeFilter = function (subject) {
+                  return (subject.marks > 74);
+        }
+        });

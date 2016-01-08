@@ -1,22 +1,39 @@
 -Scenario1
   Monty Hall
 -Scenario2
+  The wagging tail.
+  laughing squirrel. laughing club
+  home page, about, schedule(bootstrap, angular), Meetings(overeview fines angulargrid) meetingdetail(fines, notes, action items) angulargrid, upload csv with attendees
+  http://jsfiddle.net/benfosterdev/UWLFJ/
+  RUlate
   MeetTrack
   MeetingTracker w/LateTally-with six thinking hats
   w/notes
 -Scenario3
   mynote
+-Lofty idea
+  web capture solution
 
 ###
-Div arranging tips?
-Double check what border-box does.
-* red for required
+ChallengeC error handling couldnt get working
 
+Angular
+D3
+nvd3
+d3plus
+Come back review angular-nvd3
+in anonymous function how is myData mapped?
+
+
+Uploading a file using angularjs
+
+
+Maybe try flask-sqlalchemy functionality with just sqlalchemy
+Having a main view and multiple other views? guess logic lives in code but do we do views?
 
 
 expand collapse
 
-
 Long term question.
-gunicorn sqlalchemy session management
+
 embedding python/ipython cli in page.

@@ -1,0 +1,62 @@
+## Jquery
+  Write less do more.
+
+  -What will we be using jquery for
+    Show and hide elements
+    Highlight elements
+    Update the contents of elements
+
+  https://jqueryui.com/accordion/
+
+  -Outcomes
+    Find HTML elements
+    Change their CSS
+    Change their content
+    Listen to user interaction
+    Respond to user interaction
+
+
+   cdn
+   <script type="text/javascript" src="https://ajax.googleapis.com/
+   ajax/libs/jquery/2.1.3/jquery.min.js">
+   </script>
+
+   -Selectors
+     Selectors in jQuery work in a very similar fashion to CSS selectors
+       -element selector
+         $("a");  // selects all <a> link elements
+
+       -.class selector
+         $(".myClass");  // selects HTML elements with class “myClass”
+       -#id selector
+         $("#bigButton");  // selects HTML element with id “bigButton”
+   -DOM
+     One of the most important aspects of JavaScript, and thereby jQuery, is manipulation of the DOM.
+     Dom Hierarchy
+       window
+       document
+       html
+       head    body
+       meta
+    -Parent/Child relation selectors
+      $("p>a");  // returns anchors that are direct children of paragraphs
+      $("p a");  // returns all paragraph elements descended from div
+    -Pseudo selectors
+      $("a:first");  // selects the first anchor on the page
+      $("a:last");  // selects the last anchor on the page
+      $(":header");  // selects header elements (h1, h2, h3, etc)
+
+  -Changing html/css with jquery
+    $("p").css("background-color");
+    $("h2").css("text-decoration","underline"); //Underlines all <h2> elements
+    $("ul").css("border","solid 1px #ccc"); //adds a border to all lists.
+    $("#my_footer").html(); //retrieves all the html from id = “my_footer”
+    $("#my_footer").html("<h1>This is my fancy new content. Thanks jQuery, you’re the best!</h1>");
+    $("#my_footer").text("This is my fancy new text. Thanks again jQuery");
+  -Adding and removing elements
+    -adding elements
+    $("#myElement").append("<p>This is the new element.</p>");
+    $("#my_footer").append("<span>&copy; 2010.</span>");
+    -removing elements
+      $("#myElement").remove();
+      $("#myElement").empty();

@@ -1,0 +1,124 @@
+## D3 Axes & external files
+    Topics include:
+
+    -Axes
+    -External Files
+    -animation
+
+    -Introducing axes
+      -Setting up an axis
+        var yAxis = d3.svg.axis();
+        -Adding heightscale
+          yAxis.scale(heightScale);
+          yAxis.orient("left");  /* could also be right, bottom or top */
+          yAxis.ticks(5);
+          -combined
+          var yAxis = d3.svg.axis()
+            .scale(heightScale)
+            .orient("left")
+            .ticks(5);
+          -put at end of script
+            svg.append("g")
+               .call(yAxis);
+
+          -adding a class
+          svg.append("g")
+              .attr("class","axis")  // style axis via CSS
+              .attr("transform","translate(35,0)")
+              .call(yAxis);
+      -Adding variables
+        for example we have this
+          var heightScale = d3.scale.linear();
+          .domain([0, d3.max(myData, function(d) {return d;})]);
+                    .range([0, svgHeight ]);
+
+          var colorScale = d3.scale.linear();
+                           .domain([0, function(d) {return d;})])
+                           .range(["blue", "red"]);
+
+          var yAxisScale = d3.scale.linear();
+                           .domain([0, function(d) {return d;})])
+                           .range([svgHeight , 0]);
+
+    -adding variable
+      var maxData = d3.max(myData, function(d) {return d;});
+      var heightScale = d3.scale.linear()
+      .domain([0, maxData])
+      .range([0, svgHeight ]);
+
+      var colorScale = d3.scale.linear();
+        .domain([0, maxData])
+        .range(["blue", "red"]);
+
+      var xAxisScale = d3.scale.linear();
+        .domain([0,maxData])
+        .range([svgHeight , 0]);
+## External files
+  - opening csv's
+    d3.csv("list.csv", function(error, myData) {
+           myData.forEach(function(d) {
+             d.username = d.user;
+             d.score = +d.highscore;   //the + here converts to a number
+           });
+                  //all other code goes here
+                  //  …
+       });    //we finish with closing brackets and semicolon
+
+  -Json
+    var secretAgent = {<br />
+    "name":"James Bond",<br />
+    "drink":"dry martini - shaken, not stirred",<br />
+    "number":"007"<br />
+    };
+
+    var secretAgent = {<br />
+       "name":"James Bond",<br />
+       "drink":"dry martini - shaken, not stirred",
+       "number":"007"<br />
+     };
+
+     secretAgent.number;
+     // "007" is returned.
+
+     d3.json("list.json", function(error, myData) {
+     myData.forEach(function(d) {
+       d.username = d.user;
+       d.score = +d.score;   //the + here converts to a number
+         });
+     //all other code goes here
+            //  …
+   });    //we finish with closing brackets and semicolon
+   - Adding x axis
+     var xAxisScale = d3.scale.ordinal()
+        .domain(myData.map(function(d) { return d.username; }))
+        .rangeBands([0, svgWidth]);
+
+      var xAxis = d3.svg.axis()
+       .scale(xAxisScale)
+       .orient("bottom")
+       .ticks(myData.length);
+
+       canvas.append("g")
+          .attr("class", "axis")
+             .attr("transform", "translate("+ margin.left +","+ (canvasHeight -
+  (margin.bottom - 2)) + ")")
+          .call(xAxis);
+
+          canvas.append("g")
+                .append("text")
+                .text("Bar Chart")
+                .attr("x", canvasWidth / 2)
+                .attr("y", 30)
+                .attr("class","title");
+
+      #-Links!
+      More on D3 can be found at https://www.dashingd3js.com and the official site at http://d3js.org
+      An excellent resource can be found at zeroviscosity.com. Review it here to see how to construct alternative charts such as a pie, donut, etc.
+      More on Data Visualization in this online book
+      External files http://www.jeromecukier.net/
+      Adding Axis labels http://www.d3noob.org/2012/12/adding-axis-labels-to-d3js-graph.html
+      http://alignedleft.com/tutorials/d3/making-a-scatterplot
+      http://bost.ocks.org/mike/chart/
+      http://zeroviscosity.com/d3-js-step-by-step/step-1-a-basic-pie-chart
+      http://d3plus.org/
+      https://www.udacity.com/course/data-visualization-and-d3js--ud507

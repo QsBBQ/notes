@@ -1,0 +1,85 @@
+##Javascript functions
+  // define a function
+  function myFunction() {
+   console.log("function called")
+  }
+
+  myFunction(); //execute a function
+
+  -anonymous function
+    var func = function() {       // anonymous function
+         console.log(“anonymous function executed);
+         }
+    func();   //execute function
+
+  func();       // execute function
+  func;         // reference to an anonymous function
+ -function with variables
+     function myFunc(param1, param2, param3) {
+    //
+      var newValue = param1 + param2;
+      console.log(newValue + “ “ + param3);
+    }
+    //
+    myFunc(12,13,30);   //execute function with parameters
+
+  -callbacks
+      wotDayIsIt(function(day){
+      if (day === 0 || day === 6)
+          console.log("its the weekend, yipee !");
+      else
+          console.log("bummer, its a work day")
+    });
+  -
+   //sunday is 0
+
+    function wotDayIsIt(callback){
+
+    var day = (new Date().getDay());
+    callback(day)
+    }
+
+    var dayOfWeek = function(day){
+      if (day === 0 || day === 6)
+          console.log("it’s the weekend, yippee !");
+      else
+          console.log("bummer, it’s a work day")
+    }
+
+    wotDayIsIt(dayOfWeek);
+## Objects
+  var newObject = {}; // create an empty object
+
+  var student = {   firstName: 'Sean',
+                  lastName: 'Citizen',
+                  age: 21,
+                  subjects: [{name: 'Physics', marks: 70},
+                             {name: 'Chemistry',marks: 80},
+                             {name: 'Math',marks: 65},
+                             {name: 'English',marks: 75},
+                             {name: 'Hindi',marks: 67}],
+                  fullName: function() {
+                        return this.firstName + "  "+ this.lastName
+                              }
+            }
+  -JSON
+    builtin function JSON.stringify() to convert an existing object
+    ie. JSON.stringify(student)
+    {"firstName":"Sean","lastName":"Citizen","age":21,"subjects":[{"name":"Physics","marks":70},{"name":
+    "Chemistry","marks":80},{"name":"Math","marks":65},{"name":"English","marks":75},{"name":"Hindi","
+    marks":67}]}
+
+  reverse of stringify()
+  JSON.parse(stringifiedStudent);
+
+
+  ---
+  Eloquent Javascript online book
+  Javascript comprehensive reference & documentation
+  Enhanced functionality for Arrays and Objects http://underscorejs.org/
+  The Date object reference
+  JSON reference
+  Javascript Basics http://jqfundamentals.com/chapter/javascript-basics
+  http://www.w3schools.com/js/js_objects.asp
+  http://www.w3schools.com/js/js_functions.asp
+  http://www.w3schools.com/js/js_string_methods.asp

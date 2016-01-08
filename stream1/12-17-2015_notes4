@@ -1,0 +1,59 @@
+## D3 Scales Intro
+  we need to make use of scales
+    (we are only covering linear scales)
+    Topics include:
+
+    Scales
+
+    Colour scales
+
+    Using Tooltips
+  - nationalzoo.si.edu
+  -Domain and range
+    http://www.mapsofworld.com/world-top-ten/countries-with-most-pet-cat-population.html
+  -Creating a scale
+    var catScale = d3.scale.linear();
+    catScale.domain([0,77000000]);
+    catScale.range([0,400]);
+    -chained
+    var catScale= d3.scale.linear()
+                .domain([0,77000000])
+                .range([0,400]);
+  -Max() and Min()
+    d3.max(myCatData)  /* myCatData is our array */
+    d3.min(myCatData)   /* myCatData is our array */
+    var catScale = d3.scale.linear()
+                    .domain([0,d3.max(myCatData)])  /* myCatData is our array */
+                    .range([0,400]);
+   -Colour Scales
+     -Set the scale
+       var colorScale = d3.scale.linear();
+     -Set the domain
+       colorScale.domain([0,d3.max(myData)]);
+     -Set the Range
+       colorScale.range(["blue","red"]);
+     -Or do a combination
+         var colorScale = d3.scale.linear()
+                     .domain([0,d3.max(myData)])
+                     .range(["blue","red"]);
+
+        .attr("fill", function(d){return(colorScale(d));});
+    -Sorted
+      var myData = [ 10, 15, 20, 42, 35, 30, 25, 20, 15 ];
+      myData.sort();
+      myData.sort(d3.descending);
+    -Tooltips
+      -using tooltips
+         g.selectAll("rect")  /* add the code to the end of the svg.selectAll */
+         .data(myData)
+         .enter()
+         .append("rect")
+         ...
+         ..
+        // add an SVG title element contents of which is effectively rendered in a tooltip
+         .append("title")     /*code for default tooltip */
+         .text(function(d){return d});
+    -links
+        http://uwdata.github.io/d3-tutorials/d3-01.html#/
+        http://uwdata.github.io/d3-tutorials/d3-02.html#/
+        http://www.janwillemtulp.com/2011/04/01/tutorial-line-chart-in-d3/

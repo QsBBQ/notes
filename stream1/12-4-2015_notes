@@ -28,3 +28,61 @@
   http://rogerdudler.github.io/git-guide/
   https://cworth.org/hgbook-git/tour/
   http://git-scm.com/book/en/v2
+  http://gitref.org/basic/
+
+  Which of the following functions as the opposite of branch?
+  opposite of branch checkin
+
+## Connecting to github
+  git remote add <name> <url>
+  git remote add origin https://github.com/<username>/project1.git
+  git remote -v
+  -Push
+  git push -u origin master
+
+  -Comparing
+  git diff
+  git show HEAD
+  git show HEAD~1
+  git show HEAD~2
+  git add .
+  git diff HEAD
+  git diff HEAD~1
+  git diff HEAD~2
+
+  Reverting change
+  git reset HEAD index.html
+  git checkout -- index.html
+  -Branching
+    git branch “mobile_design”
+    git checkout "Branchname"
+  -Merge
+    git checkout master
+    git merge mobile_design
+    delete
+    git branch -d mobile_design
+  -Clone
+    cd new_project_folder
+    git clone https://github.com/codeinstitute/project1.git
+  -Forking
+  -Pull
+  #Workflow
+    git pull
+    git add .
+    git push
+    git pull
+    git branch “bouncing_game”
+    git checkout bouncing_game
+    git checkout master
+    -Fix the bug
+      git pull
+      git add
+      git commit -m "Fixed bug with bouncing castle."
+      git push
+      git checkout bouncing_game
+      git checkout master
+      git merge bouncing_game
+  #Collaborating
+    https://help.github.com/articles/syncing-a-fork/
+  -Markdown
+    https://guides.github.com/features/mastering-markdown/#intro

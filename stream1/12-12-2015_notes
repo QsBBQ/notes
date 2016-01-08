@@ -1,0 +1,73 @@
+## writing our first script
+
+  <script type="text/javascript" src="my_script.js"></script>
+  -in folder
+  <script type="text/javascript" src="js/my_script.js"></script>
+  -jquery example
+  <script type="text/javascript" src="https://ajax.googleapis.com/
+  ajax/libs/jquery/2.1.3/jquery.min.js">
+  </script>
+
+  -Document ready
+    $(document).ready(function() { // Run this code when DOM is ready });
+
+    -Example
+    $(document).ready(function() {
+    $(“h2”).css(“text-decoration”, “underline”); // underlines all
+        <h2> elements
+          $(“ul”).css(“border”, “solid 1px #ccc”); // adds a border to
+        all lists
+      });
+  -adding and removing classes
+  .underline{
+    text-decoration:underline;
+    }
+    .border{
+    border: solid 2px #ccc;
+    }
+  -add class example
+    $(document).ready(function() {
+    $(“h2”).addClass(“underline”);
+    $(“nav”).addClass(“border”);
+    });
+  -remove class
+    $(document).ready(function() {
+    $(“h2”).removeClass(“underline”);
+    $(“nav”).removeClass(“border”);
+    });
+  -tables with odd and even
+    $("tr:odd")
+    $("tr:even")
+
+  -Jquery selectors
+    $("*")
+    $("h1")
+    $(this)
+    $("#example")
+    $(".example")
+    $("[alt]")
+    $("img[title='apples']")
+    $("header> p")
+  -jquery pseudo selectors
+    $("h2:first-of-type")
+    $(":first")
+    $("td:first-child")
+    $("tr:odd")
+    $("tr:even")
+    $("input:focus")
+    $("input:text")
+    $("p:not(.intro)")
+
+
+
+    -jQuery Selectors
+    http://www.kirupa.com/html5/traversing_the_dom.htm
+    http://code.tutsplus.com/tutorials/the-30-css-selectors-you-must-memorize–net-16048
+    JQuery Tutorials
+    http://jqfundamentals.com/legacy/#chapter-1
+    http://www.impressivewebs.com/jquery-tutorial-for-beginners/
+    UI Components
+    http://jqueryui.com/demos/
+    https://www.udacity.com/course/intro-to-jquery–ud245
+    https://www.codecademy.com/courses/web-beginner-en-bay3D/0/1?curriculum_id=50a3fad8c7a770b5fd0007a1
+    http://ejohn.org/apps/workshop/intro/#0

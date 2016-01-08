@@ -1,0 +1,75 @@
+### Bootstrap Nav Elements
+  -Nav intro
+    Navigation
+    Tabs and Pills
+    Bootstrap Components
+    Creating an Accordion panel
+  -navbar class
+    <nav class="navbar navbar-default">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">CHOCOBLOCK</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+ -Navbar positioning
+   navbar-fixed-top class
+ -Tabs and Pills
+   -tabs
+     <nav>
+       <ul class="nav nav-tabs">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li class="active"><a href="#">Portfolio</a></li>
+          <li><a href="#">Contact</a></li>
+       </ul>
+      </nav>
+    -Pills
+      <nav>
+         <ul class="nav nav-pills">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li class="active"><a href="#">Portfolio</a></li>
+            <li><a href="#">Contact</a></li>
+         </ul>
+        </nav>
+    -Positioning and display
+      Nav-justified
+## Bootstrap components
+  -boostrap panel
+    <div class="panel panel-default"> 
+       <div class="panel-heading"> 
+          <h3 class="panel-title">Panel title</h3> 
+       </div> 
+       <div class="panel-body"> 
+          Panel content 
+       </div>
+      </div>
+  -accordion
+    <div class="panel panel-default">
+       <div class="panel-heading">
+           <h4 class="panel-title">
+               1. What is Bootstrap?
+           </h4>
+       </div>
+       <div class="panel-body">
+          <p>Bootstrap is a powerful front-end framework for faster and easier web development. It is a collection of CSS and HTML conventions.
+          <a href="http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/" target="_blank">Learn more.</a></p>
+           </div>
+           <div class="panel panel-default">
+         <div class="panel-heading">
+             <h4 class="panel-title">
+                 1. What is Bootstrap?
+             </h4>
+         </div>
+       <div class="panel-body">
+          <p>Bootstrap is a powerful front-end framework for faster and easier web development. It is a collection of CSS and HTML conventions.
+          <a href="http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/" target="_blank">Learn more.</a></p>
+       </div>
+      </div>
+    </div>

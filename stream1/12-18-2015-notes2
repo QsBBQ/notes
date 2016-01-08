@@ -1,0 +1,127 @@
+## AngularJS -Intro
+  -In AngularJS these components or constructs are referred to as controllers, services, directives, constants and filters.
+    https://www.madewithangular.com/#/
+    Model View Control - MVC
+
+    Topics Include:
+      Framework Vs Library
+      The MVC / MVVM Design Patterns
+      Angular application structure
+      Creating an Angular Application
+      $scope and built in directives
+      Intro to controllers
+      Angular Filters
+
+  # Frameworks vs library
+    -A framework imposes a structure on the developer which they must buy into.
+  #MVC-MVVM Design
+    -MVC design pattern
+      The code in an application or component for the view or user interface presentation
+      The controller an intermediary between the view and the model, marshalling model data for passing onto a view or presentation of the model data
+      The model or the data representation.
+      -Model-update/notify-controller-user-action/update-View
+  #MVVM Pattern
+    -Model-View View-Model design pattern (MVVM)
+    view-data-binding-view-model-update/notify-model
+  # Two way binding
+    concept that the Angular framework encapsulates is the the concept of two-way data binding.
+  # Angularjs app structure
+    -controllers
+      Controller should be just an interlayer or the ‘glue’ between model and view.
+      Try to make controllers as thin as possible
+    -templates
+      HTML files have an associated controller, which will define the data to be presented to the template for viewing in the browser.
+    -directives
+      UI components that can be included in templates or views as enhancements to existing html elements or new html elements that can have dynamic behaviour.
+    -services
+      Allow model data and business logic to be retrieved from some source (external server process) and passed on to controllers via dependency injection.
+
+    -Directory structure
+      project root/
+      index.html      // entry point for our application
+      javascript/
+            app.js    // defines our application and configuration
+            controller.js // our controllers
+            directive.js  // our directives
+            service.js    // our services
+      templates/
+            // our application views or html files
+      css/
+            // our css files
+      vendor/
+            // any external libraries we wish to use e.g. bootstrap
+            // angular, jquery etc
+
+    -create angular app.
+      <script
+      src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js">
+      </script>
+      -modules
+        -application module
+          Defines our application and allows us to use built in functions, services and directives of the Angular framework as well as custom built functions, services, and directives.
+          -app.js the empty array can contain modules
+          angular.module("mainApp", []);
+          angular.module("mainApp");   // note we’ve dropped the array definition
+          -initialize app
+          in index.html
+          <!doctype html>
+            <html ng-app=”mainApp”>
+            <head>
+              <title>My Angular App</title>
+              <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+            </head>
+            <body>
+            </body>
+
+            <script src="javascript/app.js"></script>
+            </html>
+
+        -controller module
+          Marshalls our model data for passing on to our HTML templates or View and responds to user interaction within the view
+          in controller.js
+            angular.module('myControllers',[]).controller('MyController',function($scope) {
+            // controller logic here
+            });
+          -Chained controllers
+          angular.module('myControllers',[])
+            .controller('MyController',function($scope) {
+            // controller logic here
+            })
+            .controller('MyOtherController',function($scope) {
+            // my other controller logic here
+            });
+          -define controllers and subsquent controllers
+            angular.module('myControllers',[]);
+
+            angular.module('myControllers').controller('MyController',function($scope) {
+            // controller logic here
+            });
+
+            angular.module('myControllers').controller('MyOtherController',function($scope) {
+            // my other controller logic here
+            });
+            -$scope object
+              In the above controller definition we are passing a $scope object to our controller(s) which we will use to populate our view model data.
+              The $scope object is essentially our ViewModel, it is the glue that binds the view and controller together and allows user interactions to be handled to maintain state.
+            -Update app.js with controller
+              angular.module("mainApp", [‘myControllers’]);
+            -Upate index.html
+              <!doctype html>
+                <html ng-app="mainApp">
+                <head>
+                  <title>My Angular App</title>
+                  <script
+                src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.
+                js"></script>
+                </head>
+                <body>
+                </body>
+                <script src="javascript/app.js"></script>
+                <script src="javascript/controller.js"></script>
+                </html>
+        -service module
+          For gathering our Model data and performing common tasks.
+
+
+        -directive module
+          For our custom built directives which will enhance our Views and enable reusability.

@@ -1,0 +1,150 @@
+## Javascript II
+
+  Topics include:
+
+  Javascript in the Browser
+
+  Javascript and external communication
+
+- <h1>Testing alert</h1>
+  <script>alert("hello!");</script>
+-The Document Object
+    -document.getElementById and getElementsByClassName()
+      <p>My Mother :</p>
+      <p><img id="mom" src="img/mother.png">
+      <script>
+      var mom= document.getElementById("mom");
+      console.log(mom.src);
+      </script>
+    -getElementsByClassName()
+        <p id="para" style="color: purple">
+               Pretty text
+        </p>
+
+        <script>
+          var para = document.getElementById("para");
+          console.log(para.style.color);
+          para.style.color = "magenta";
+        </script>
+    -font-family
+       style.fontFamily
+    -example of changing text
+      http://jsfiddle.net/lillylangtree/s27jy8c3/
+
+    -The window object
+      for example
+        var jQuery = {};  // empty object
+        jQuery.ajax = function() { //ajax code
+            }
+        window.jQuery = window.$ = jQuery;
+
+    -SCOPE:  GLOBAL VS LOCAL
+      Javascript has the concept of local and global scope.
+      Any variable or function is put into the global scope if declared outside of a function definition.
+      Any variable or function declared inside a function definition is said to be local to that function definition and cannot be accessed outside of that function .
+      See example at https://repl.it/BWIw
+       If a variable is not declared with the var keyword, it is assumed to be a global variable.
+
+    -Module Pattern
+
+      -self executing function
+        (function() {
+                //code goes here
+                //everything declared here is local
+                //to the function scope and not
+                //added to the global scope
+                console.log(“self execution function”);
+           })(); // () causes immediate execution
+      -Strict mode
+        This enforces stricter syntax rules, such as requiring variables to be declared before being used.
+        https://repl.it/BWIw/4
+  -Anatomy of an API
+    protocol server path
+  -Asynchronous programing
+     setTimeout
+     setInterval
+    console.log( "a" );
+    setTimeout(function() {
+      console.log( "c" )
+    }, 500 );
+    setTimeout(function() {
+      console.log( "d" )
+    }, 500 );
+    setTimeout(function() {
+      console.log( "e" )
+    }, 500 );
+    console.log( "b" );
+  -Ajax
+    AJAX stands for Asynchronous Javascript and XML .
+    This terminology has been made redundant due to the widespread adoption of JSON format over the XML data format.
+    AJAX can be used to consume remote APIs and is an Asynchronous process.
+    JQuery has a number of implementations that allow for the calling of an API and the return of data,
+    see http://api.jquery.com/jquery.ajax/
+
+    -example
+    $.ajax({
+
+    url:"https://api.themoviedb.org/3/movie/popular?page=1&amp;api_key=35e16679c6
+    16a21b9ddebb66272c5902",
+            dataType: "json",
+            complete: function (response) {
+                // response contains number of items one of which
+                // is any associated data .responseText
+                $('#output').html(response.responseText);
+            },
+            error: function () {
+                $('#output').html('Bummer: there was an error!');
+            },
+        });
+    -fiddle example
+      http://jsfiddle.net/lillylangtree/9ws3jwqq/
+    -Debugging in the browser
+      Use the chrome tools!
+    -Jquery promise
+      We’ll look at jQuery’s implementation of the promise method of working with Asynchronous processes.
+        function getMovieById(id) {
+        var dfd = new $.Deferred();
+        $.ajax({
+        url:"https://api.themoviedb.org/3/movie/"+id
+         +"?api_key=35e16679c616a21b9ddebb66272c5902",
+                  dataType: "json",
+                 complete: function (response) {
+                     var movie = response.responseJSON;
+                     return dfd.resolve( movie );//movie gets sent to .then()
+                 },
+                 error: function () {
+                     dfd.reject(“error on ajax call”);
+                 },
+             });
+             return dfd.promise();  //returns before resolve
+        }
+
+       -Now create a function to call the above
+         function getMovie(id) {
+           getMovieById(id).then(
+              function(movie) {//success
+                               //getMovieById finished process results.
+                               //better as we've removed dependency on html
+                               //need to stringify to display results.
+                    $('#output').html(JSON.stringify(movie));
+                    $('#overview').html(movie.overview);
+              },
+              function(message) {//failure
+                    $('#output').html('Bummer: there was an error! ' + message);
+              }
+              );
+          }
+       -fiddle example of above
+         http://jsfiddle.net/lillylangtree/Lygcvz2h/
+
+
+      -link
+        JQuery AJAX http://api.jquery.com/jquery.ajax/
+        MoviesDB Api http://docs.themoviedb.apiary.io/#
+        MongoDB https://www.mongodb.com
+        JSON reference
+        API repository http://www.programmableweb.com/
+        Cross Domain Requests in Javascript
+        http://html.net/tutorials/css/lesson16.php
+        http://html.net/tutorials/javascript/lesson18.php
+        http://html.net/tutorials/javascript/lesson21.php

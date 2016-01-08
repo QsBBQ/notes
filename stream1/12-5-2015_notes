@@ -1,0 +1,130 @@
+### Bootstrap
+    Topics include:
+
+    What is Bootstrap?
+    The grid system and Bootstrap layouts
+    Bootstrap components
+  #Advantages
+    -Saves time
+      With a host of pre-built components and designs, you can save loads of time by using the Bootstrap templates.
+    -Mobile first
+      Bootstrap 3 comes with a mobile-first approach, so you can easily create responsive designs.
+    -Easy to use
+      Bootstrap is easy to use. Now that you have knowledge of HTML and CSS, we can use all the functionality of Bootstrap.
+    -Cross-browser compatibility
+      Bootstrap is compatible with all modern browsers.
+    -Its free
+      It’s open source and completely free to download and modify as you wish.
+  #The setup
+    http://getbootstrap.com/getting-started/#download
+  # Grid System
+    -The rows can be laid out as one 1 column, split into 12 separate columns, or anything in between.
+    -12 is the maximum number of columns permitted per row and they are also the units used to measure the width of the page horizontally.
+      The sum of columns in a row must equal 12
+    -Column layout examples
+      Three-column layout
+      <div class="col-sm-4">...</div>
+      <div class="col-sm-4">...</div>
+      <div class="col-sm-4">...</div>
+    -How to implement
+        <div class="container">
+          <div class="row">
+             <div class="col-sm-4">
+                   ...
+             </div>
+             <div class="col-sm-4">
+                   ...
+             </div>
+             <div class="col-sm-4">
+                   ...
+             </div>
+          </div>
+          <div class="row">
+               ...
+          </div>
+        </div>
+      -Column syntax
+        class="col-sm-4"
+
+        col – This element is a column
+        sm – This is the screen size, in this example “small” (we will cover this in more detail in the next section).
+        4 – The width of the column (out of 12)
+        <div class="col-sm-4">...</div>
+        <div class="col-sm-4">...</div>
+        <div class="col-sm-4">...</div>
+      -center a grid
+      <div class="row">
+           <div class="col-md-4 col-md-offset-4">.col-md-4 .col-md-offset-4</div>
+       </div>
+  #Basic Components
+    -bootstrap buttons
+      <a href="#" class="btn btn-success">Learn</a>
+      <a href="#" class="btn btn-success">Learn</a>
+      <a href="#" class="btn btn-primary">Learn</a>
+      <a href="#" class="btn btn-danger">Learn</a>
+
+      <a href="#" class="btn btn-success btn-lg">Learn</a>
+      <a href="#" class="btn btn-primary btn-default">Learn</a>
+      <a href="#" class="btn btn-danger btn-sm">Learn</a>
+    -Bootstrap lists
+      <ul>
+        <li>Chrome</li>
+        <li>Firefox</li>
+        <li>Safari</li>
+        <li>Opera</li>
+        <li>Internet Explorer
+          <ul>
+            <li>IE</li>
+            <li>Edge</li>
+          </ul>
+        </li>
+          <li>Torch</li>
+      </ul>
+      -Boostrap list groups
+        <ul class="list-group">
+          <li class="list-group-item">Stars</li>
+          <li class="list-group-item">Songs</li>
+          <li class="list-group-item">Photos</li>
+          <li class="list-group-item">Comments</li>
+        </ul>
+      -Glyphs
+        <div class="list-group">
+          <li class="list-group-item">
+            <span class="glyphicon glyphicon-star-empty"></span> Stars
+          </li>
+          <li class="list-group-item active">
+              <span class="glyphicon glyphicon-music"></span> Songs
+          </li>
+          <li class="list-group-item">
+              <span class="glyphicon glyphicon-camera"></span> Photos
+          </li>
+          <li class="list-group-item ">
+            <span class="glyphicon glyphicon-comment"></span> Comments
+          </li>
+        </div>
+      -Badges
+        <div class="list-group">
+          <a href="#" class="list-group-item">
+              <span class="glyphicon glyphicon-star-empty"></span> Stars
+          </a>
+          <a href="#" class="list-group-item active">
+              <span class="glyphicon glyphicon-music"></span> Songs
+          </a>
+          <a href="#" class="list-group-item">
+              <span class="glyphicon glyphicon-camera"></span> Photos
+          </a>
+          <a href="#" class="list-group-item ">
+              <span class="glyphicon glyphicon-comment"></span> Comments
+          </a>
+        </div>
+
+        -Add span
+          <a href="#" class="list-group-item">
+             <span class="glyphicon glyphicon-star"></span> Stars
+             <span class="badge">145</span>
+          </a>
+
+    #Links
+      http://www.w3schools.com/bootstrap/bootstrap_grid_basic.asp
+      http://www.w3schools.com/bootstrap/bootstrap_badges_labels.asp
+      http://www.w3schools.com/bootstrap/bootstrap_glyphicons.asp

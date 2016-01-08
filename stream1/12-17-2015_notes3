@@ -1,0 +1,80 @@
+## D3 & Data Intro
+  Understand how D3 uses data
+
+  Drawing a bar chart using D3 and manipulating color
+
+  Fitting the chart inside a SVG, regardless of the number of data points
+
+  Translation and Transformation
+
+  -Using Data
+    D3 works best for explanatory rather than exploratory data
+    – it’s not meant to be used as just a charting application into which you plug-in raw data.
+    - D3 works best to explain data that has already been analysed in order to form a narrative, such as shown in the below example:
+    -Arrays refresher
+      var numbers = [ 5, 10, 15, 20, 25 ];
+      numbers[2]  //Returns 15
+    -Drawing a bar chart
+      1   svg.selectAll("rect")
+      2      .data(myData)
+      3      .enter()
+      4      .append("rect")
+      5      .attr("x", 20)
+      6      .attr("y", 20)
+      7      .attr("width", 100)
+      8      .attr("height", 200);
+
+     -Line1
+       The first line selects all the rectangles.
+       svg.selectAll("rect")
+     -Line2
+       .data(myData)
+       We now need to pass the myData array into the data method.
+      -Line3
+        The line 3 enter() creates a space for each data item.
+        .enter()
+      -Line4
+        Line 4 states that for each data item in the array, append a rectangle.
+        .append("rect")
+      -Line5-8
+         .attr("x", 20)
+         .attr("y", 20)
+         .attr("width", 100)
+         .attr("height", 200);
+
+     -how to see the data?
+       console.log(d3.selectAll("rect"))
+       outerHTML: "<rect x="20" y="20" width="100" height="200"></rect>"
+     -Anonymous function
+          function(d){
+        return d;
+      }
+     - i is the index so we * 30 to space x out
+     .attr("x", function(d,i){
+         return i * 30;     /* multiply the index by the width  */
+      })
+     .attr("x", function(d,i){return i * 30;})
+
+  # Fitting a chart inside SVG
+    -Making a graph flexible
+      var svgWidth = 500;
+      var svgHeight = 300;
+      var spacing= 2;
+    - we want to divide the number of data items into the svgWidth.
+      svgWidth / number of data items
+    -How do we figure out the number of data items
+      svgWidth / myData.length
+
+      .attr("x", function(d, i) {
+            return i * (svgWidth / myData.length);
+        })
+
+      .attr("width", svgWidth / myData.length - spacing);
+
+    -UPdating data
+    var myNewData = [ 40,25,10,35,45,6,40,75,50,80 ];
+
+      svg.selectAll("rect") // existing rect elements
+       .data(myNewData)
+       .attr("y", function(d){return (svgHeight - d);}) // d is from new array
+       .attr("height", function(d){return d});

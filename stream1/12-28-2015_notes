@@ -1,0 +1,188 @@
+## The MovieDB API
+  -We are going to create an application using the Movies DB Api.
+  Details can be found at http://docs.themoviedb.apiary.io/#
+  Need an api key
+  https://www.themoviedb.org/account/signup?language=en
+
+  API Key: 511c2ce5fdbe96bfb78a22491d540161
+
+  -Movies db api calls
+      Popular Movies
+      Upcoming Movies
+      Now Playing Movies
+      Top Rated Movies
+
+  -To generate a url to make an api call we need:
+    the url end-point – https://api.themoviedb.org/3/movie/
+    the movie type popular, upcoming, now_playing, and top_rated
+    our api-key
+    -Movie
+      title
+      poster_path
+      id
+      release_date
+
+    So for example, to return popular movies our url would look like:
+    https://api.themoviedb.org/3/movie/popular?api_key=35e16679c616a21b9ddebb66272c5902
+    https://api.themoviedb.org/3/movie/popular?api_key=511c2ce5fdbe96bfb78a22491d540161
+
+    http://www.ng-newsletter.com/posts/beginner2expert-how_to_start.html
+    http://www.ng-newsletter.com/posts/beginner2expert-scopes.html
+    http://www.ng-newsletter.com/posts/beginner2expert-data-binding.html
+
+  # Angular directives
+    -intro
+      Directives are probably the most interesting aspect of the Angular framework.
+      Directives allow developers to create reusable UI components that can be plugged into HTML files to provide dynamic, interactive content instead of static web pages.
+      The Angular API docs should be consulted for full API usage of all core directives at http://docs.angularjs.org/api/ng.
+
+      -Topics include
+        Anatomy of a custom directive
+        Movies DB revisited
+        Creating a navigation menu
+        Creating a Google map directive
+      -Anatomy of a custom directive
+        -Directive declaration
+          An Angular Directive is registered in the same way as a controller and service,
+          but it returns a simple object (directive definition) that has several properties to configure the directive.
+          -app.js
+            angular.module('myApp', [‘myDirectives’]);
+          -directive.js
+            angular.module('myDirectives', []).directive('myHello', function() {
+              return {
+                template: '<div>Hello world!</div>',
+                restrict: 'E'
+              };
+              });
+        - The directive above uses two built in elements, which in this case are part of the returned directive object.
+
+            template:   a code ‘snippet’ of html
+            restrict:   indicates if this directive is to be used as an element(E)  or attribute(A) directive
+
+            <html lang='en' ng-app='myApp'>
+              ...
+              <body>
+                <my-hello></my-hello>
+              </body>
+          -example
+            http://jsfiddle.net/lillylangtree/b8uwq8ze/
+            -attribute example
+              http://jsfiddle.net/lillylangtree/9573xk05/
+
+      # Elements of a directive
+      .directive('myHello', function() {
+          return {
+            templateUrl: 'path-to-file',
+            restrict: 'AE',
+            scope: false, // true, false or { }
+            controller: function($scope, $element,$attrs){
+                                  },
+            link: function(scope,element,attrs){
+                            }
+          };
+          });
+          -elements of a directive
+            template:  HTML code to generate. OR
+            templateURL:  URL of the HTML template of the directive.
+            restrict:  Defines the usage of the directive, Element(E)  or Attribute(A)
+            scope:  This is the part where we inject objects or functions to our directive’s scope from outside.
+                    Objects are passed via attributes on the directive DOM.
+            -
+             In addition to the above, we have two functions that we can attach to a directive.
+             The link function and the controller function.
+             Both these functions get executed when the directive is ‘compiled’ and displayed on the html template.
+    -Controller function
+      The controller function generally takes the $scope object as its parameter.
+      The controller function can then manipulate the $scope object for display within the directive view.
+        controller: function($scope,$element,$attrs) {
+         // controller code here
+         }
+    -Link function
+      The link function used in the directive takes three arguments:
+
+      scope – The scope passed to the directive.
+      elem – The element on which the directive is applied.
+      attrs – An object representing normalized attributes attached to the element on which the directive is applied.
+              For example, you can attach attributes in HTML like: and access it in the link function as attrs.someAttribute.
+    -read
+      https://thinkster.io/a-better-way-to-learn-angularjs/scope-vs-scope
+    -Scope in an angularjs directive
+      angular.module("myDirectives",[]).directive("myDirective",function(){
+        return {
+          restrict: "EA",
+          scope: true,
+          link: function(scope,elem,attr){
+              // code goes here ...
+          }
+        }
+        });
+    -inherit parent scope
+      http://jsfiddle.net/lillylangtree/2p5ugvs2/
+
+      Scope : False ( Directive uses its parent scope; Default )
+      Scope : True ( Directive gets a new scope ) This newly created scope object is prototypically inherited from its parent scope.
+      The directive and parent are using the same scope.
+
+      There is a subtle difference between the two values.
+      The first allows for two way binding, changes in either parent or directive are kept in sync.
+      The second allows for one way binding,
+      i.e. changes in the parent scope are reflected in the directive but not vice versa.
+      Scope : { } ( Directive gets a new isolated scope ) When an object literal is passed to the scope property, things are bit different.
+
+      Let’s explore a few ways of setting up the binding:
+
+        “@”   (  Text binding / one-way binding )
+        “=”   ( Direct model binding / two-way binding )
+        “&”   ( Behaviour binding / Method binding  )
+
+        <my-directive
+          class="directive"
+          name="{{name}}"
+          reverse="reverseName()"
+          color="color" >
+        </my-directive>
+    -Option1: USE @ FOR ONE WAY TEXT BINDING
+      scope : {
+      name: "@" // refer to scope.name in directive}
+
+      scope : {
+      name: "@parentname" // refer to scope.name in directive}
+      http://jsfiddle.net/lillylangtree/g42fnxvw/
+    -Option2: USE = FOR TWO WAY BINDING
+      -Unlike @, this technique lets you assign an actual scope model to the attribute rather than just plain strings.
+      scope : {
+      color: "=" // refer to scope.color in directive}
+      -Where parent attribute name different to directive scope name:
+      scope : {
+      color: "=parentname" // refer to scope.color in directive}
+    -Option3: USE & TO EXECUTE FUNCTIONS IN THE PARENT SCOPE
+      It’s sometimes necessary to call functions defined in the parent scope from a directive with isolated scope.
+      angular.module('myApp', ['myControllers','myDirectives']);
+        angular.module('myDirectives', []).directive('myHello', function() {
+          return {
+            template: '<div>Hello world! I am saying {{goodbye()}}</div>',
+            restrict: 'AE',
+            scope: { goodbye: '&amp;'}
+          };
+        });
+        angular.module('myControllers',[])
+        .controller('DirectiveController',function($scope) {
+          $scope.person = {name: 'sean'};
+          $scope.myGoodbye = function() {
+              return 'Goodbye ' + $scope.person.name
+          }
+        })
+        <body ng-app="myApp">
+            <div ng-controller="DirectiveController">
+                <my-hello goodbye='myGoodbye()'></my-hello>
+            </div>
+          </body>
+
+          scope : {
+            goodbye: "&amp;" // refer to scope.myGoodbye() in directive}
+    -Example of above
+      http://jsfiddle.net/lillylangtree/apgcofL3/
+
+    -DIRECTIVE DECOUPLED FROM VIEW
+      -fiddle
+        http://jsfiddle.net/lillylangtree/Ldu6ure9/

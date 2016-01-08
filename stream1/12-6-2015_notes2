@@ -1,0 +1,132 @@
+###Javascript
+  https://repl.it/languages
+  -Comments
+    // a one line comment
+
+    /* this is a longer,
+     multi-line comment
+    */
+  -Variables
+    var x = 42
+    const myConst = 12;
+  -Datatypes
+    Boolean: true and false.
+    null: A special keyword denoting a null value. Because Javascript is case-sensitive,null is not the same as Null, NULL, or any other variant.
+    undefined: A top-level property whose value is undefined.
+    Number: 42 or 3.14159.
+    String: “Howdy”
+  -Operators
+    equal to ==
+    equal value and equal type ===
+    not equal !=
+    not equal vlaue or not equal type !==
+    > greater than
+    < less than
+    >= greater than or equal to
+    <= less than or equal to
+  -Evaluating variables
+    var input;
+    if(input === undefined){
+    doThis();
+    } else {
+    doThat();
+    }
+  -Data type conversion
+    var answer = 42;
+    answer = "Thanks for all the fish...";
+  -Type coercion
+    x = "The answer is " + 42 // "The answer is 42"
+    y = 42 + " is the answer" // "42 is the answer"
+    "37" - 7 // 30
+    "37" + 7 // "377"
+    var x = 30;
+    var y = ‘30’;
+    x == y // returns true !!!
+  -Strings
+    //string functions
+
+    //add two strings
+    var string3 = "Code " + "institute";
+    console.log(string3);
+    var profile = "Sean at the Code Institute";
+    console.log(profile.toLowerCase());
+    console.log(profile.toUpperCase());
+    //split a string into an array of words
+    var words = profile.split(" ");
+    console.log(words);
+    console.log(profile.replace("Code ","Code-"));
+    //search for a word, return its position in string
+    console.log(profile.search("Code"));
+    //extract string at position to end of string
+    var newProfile = profile.slice(4);
+    console.log(newProfile);
+    //extract string at position to new position
+    var newProfile = profile.slice(12,16);
+    console.log(newProfile);
+
+    http://www.w3schools.com/jsref/jsref_obj_string.asp
+
+  -Javascript control structures
+    -for statement
+      for ([initialExpression]; [condition]; [incrementExpression])
+        {
+          statement
+        }
+        var x = 10;
+        for (var i=0; i &lt; x; i++) {
+             console.log("loop value:" + i)
+        }
+        // loop 0
+        .
+        .
+        // loop 9
+        // i++ increments i by 1 each loop.
+        // i-- will decrement
+    -if else
+      if (condition) {
+        statement_1;
+        } else if{
+        statement_2;
+        }else{
+        statement_3;
+        }
+  -JS Arrays
+    var myArray = []; //empty array
+    var listOfNumbers = [2, 3, 5, 7, 11];
+    console.log(listOfNumbers[1]);
+    // → 3
+    var elem = listOfNumbers[2];
+    console.log(elem);
+    //5
+    console.log(listOfNumbers.length)
+    // 5
+  -Array iteration
+    var myArray = ['one','two','three','four','five','six'];
+
+      for (var num in myArray) {
+            console.log(num); //returns the index
+            console.log(myArray[num]); //show element
+      }
+
+      var myArray = ['one','two','three','four','five','six'];
+      myArray.forEach(function(element, index, array) {
+                          console.log('element[' + index + '] = ' + element);
+                        });
+  -Array builtin functions
+    Push
+      var myArray = ['one','two','three','four','five','six'];
+      myArray.push(‘seven’); // adds to the end of the array
+    Pop
+      var myArray = ['one','two','three','four','five','six'];
+      myArray.pop(); // removes from the end of array returns that element.
+    Shift
+      var myArray = ['one','two','three','four','five','six'];
+      myArray.shift(); //removes first element of array returns that element.
+    Unshift
+      var myArray = ['one','two','three','four','five','six'];
+      myArray.unshift(); //add element to front of array returns new length.
+    Indexof
+      var myArray = ['one','two','three','four','five','six'];
+      myArray.indexOf(‘two’); // 1
+
+  https://developer.mozilla.org/en-US/docs/Web/Javascript/Reference/Global_Objects/Array

@@ -1,0 +1,171 @@
+## $scope and built-in Directives
+  The Angular framework comes with a number of ‘built-in’ directives that we can use to create our applications.
+  The built-in directives we will look at are generally what are called attribute directives, i.e. they are attached to an html element to enhance or ‘decorate’ an existing element with enhanced behaviour.
+  -adding to controller.js
+    angular.module('myControllers',[]).controller('MyController',function($scope
+    ) {
+        // set scope with first and last names
+        $scope.firstName = ‘Sean’;
+        $scope.lastName = ‘Citizen’;
+    });
+      Naming convention: When we name modules, we usually use camel-case convention,
+      i.e. lower case first word, capitalized subsequent words.
+      When naming controllers, we use all capitalized words.
+
+  -Template view
+    We essentially need to allocate a template view or html with a controller.
+    This allows shared access to the $scope data object through the two-way binding we discussed.
+  -ng-controller
+      <!doctype html>
+      <html ng-app="mainApp">
+      <head>
+        <title>My Angular App</title>
+        <script
+      src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min
+      .js"></script>
+      </head>
+      <body>
+        <div ng-controller="MyController">
+         <!-- $scope data available here -->
+        </div>
+      </body>
+      <script src="javascript/app.js"></script>
+      <script src="javascript/controller.js"></script>
+      </html>
+
+      <div ng-controller="MyController">
+    hi {{ firstName}} {{ lastName }}
+  </div>
+
+  The data between the curly brackets{{ }}, which is called an angular expression, is the scope data constructed in the controller defined by the ng-controller attribute value.
+  -Add to controller.js
+  angular.module('myControllers',[]).controller('MyController',function($scope
+    ) {
+        // set scope with first and last names
+        // add greeting function
+        $scope.firstName = ‘Sean’;
+        $scope.lastName = ‘Citizen’;
+        $scope.greeting = function(){
+              return “Greetings “ + $scope.firstName + “ “ + $scope.lastName;
+        }
+    });
+
+    If we are referring to a $scope object or function property, we use the ‘ ‘ notation, e.g. ng-click=’myFunction()’
+  -NG-Model
+
+    -on controller
+      angular.module('myControllers',[]);
+
+        angular.module('myControllers').controller('MyController',function($scope
+        ) {
+            // set scope with first and last names
+            // add greeting function
+            $scope.firstName = ‘Sean’;
+            $scope.lastName = ‘Citizen’;
+            $scope.greeting = function(){
+                  return “Greetings “ + $scope.firstName + “ “ +
+        $scope.lastName;
+            }
+        });
+        angular.module('myControllers').controller('MyOtherCtrl',function($scope)
+        {
+         $scope.student = {
+            firstName: " ",
+            lastName: " ",
+
+         };
+        });
+      -on index.html
+        <div ng-controller="MyOtherCtrl">
+          First Name: <input ng-model='student.firstName'>
+          Last Name<input ng-model='student.lastName'>
+
+          First Name:  {{student.firstName}}
+          Last Name:  {{student.lastName}}
+        </div>
+
+    -NG-Repeat
+      -controller
+        angular.module('collegeControllers',[]).controller('StudentController',fu
+        nction($scope) {
+        //
+        var student = {
+              firstName: "Rich",
+              lastName: "Richie",
+              fees: 500,
+              subjects: [{name: 'Physics', marks: 70},
+                         {name: 'Chemistry',marks: 80},
+                         {name: 'Math',marks: 65},
+                         {name: 'English',marks: 75},
+                         {name: 'Hindi',marks: 67}],
+              fullName: function () {
+                         return this.firstName + " " + this.lastName;
+              }
+          };
+        $scope.student = student;
+        $scope.greeting = function(){
+          return "Greetings " + $scope.student.fullName();
+        }
+        });
+    # NG-Hide/NG-SHOW
+      <div ng-show=’doIwantToShowThis()’>some content</div>
+      Where ‘doIwantToShowThis()’ is a function defined in a controller and attached to the scope object.
+      The expected return value of the function is expected to be a boolean value (true or false). The value of the expression does not have to be a function it can be an expression but needs to return a boolean value.
+      <div ng-show=’{{ subject.marks> 74 }}’>some content</div>
+    # Ng-click
+      -<button ng-click=’someFunction()’>Click Me!</button>
+      where ‘someFunction()’ has been defined in a controller and attached to the $scope object.
+    https://en.wikipedia.org/wiki/Ternary_operation
+    https://en.wikipedia.org/wiki/%3F:#JavaScript
+
+    if ($scope.results)
+          return $scope.results = false
+    else
+          return $scope.results = true
+
+          <!-- FOR BOOLEAN VALUES =============================== -->
+      <!-- for true values -->
+      <div ng-show="hello">this is a welcome message</div>
+
+       <!-- can also show if a value is false -->
+      <div ng-show="!hello">this is a goodbye message</div>
+
+      <!-- FOR EXPRESSIONS =============================== -->
+      <!-- show if the appState variable is a string of goodbye -->
+      <div ng-show="appState == 'goodbye'">this is a goodbye message</div>
+
+      <!-- FOR FUNCTIONS =============================== -->
+      <!-- use a function defined in your controller to evaluate if true or false -->
+      <div ng-hide="checkSomething()"></div>
+
+  ## Angular filters
+      <form class="form-inline">
+        <input ng-model="query" type="text"
+          placeholder="Filter by Subject" autofocus />
+      </form>
+
+      <div ng-repeat="subject in student.subjects | filter: { name: query } ">
+            result for: {{subject.name}} {{subject.marks}}
+      </div>
+
+      $scope.aGradeFilter = function (subject) {
+        return (subject.marks > 74);
+        }
+        <div ng-repeat="subject in student.subjects | filter: aGradeFilter ">
+        A Grades for : {{subject.name}} = {{subject.marks}}
+       </div>
+
+       ng-repeat=”subject in student.subjects | OrderBy: ‘marks’ ”
+
+       <div ng-repeat="subject in student.subjects | filter: aGradeFilter | orderBy: 'marks'">
+
+  #Links!!
+    Angular Tutorial intro to templating
+    Angular  First Application
+    Angular MVC Architecture
+    Angular Controllers
+    Thinkster tutorial comprehensive guide
+    Step By Step guide to your first app tutorial
+    http://www.codeproject.com/Articles/803294/Part-Introduction-to-AngularJS
+    https://thinkster.io/a-better-way-to-learn-angularjs
+    https://thinkster.io/a-better-way-to-learn-angularjs#the-view-and-the-dom

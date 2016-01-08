@@ -1,0 +1,66 @@
+### Jquery Method chaining
+  -method chaining
+    $("#myButton").removeClass("blueBox");
+    $("#myButton").addClass("border");
+    $("#myButton").removeClass("border").addClass("blueBox")
+    $("p").css("color", "blue").slideUp(2000).slideDown(2000);
+    -attributes
+      $("a").attr("href","http://www.jazzcats.ie");
+  -importance of this
+    -it would be useful to refer to the element that triggered the event
+      $(‘button').click(function(){
+          $('p').slideToggle('slow');
+    });
+
+    -example
+        $(‘button').mouseenter(function(){
+        $(this).removeClass('makeBlue').addClass('makeBorder');
+    });
+
+
+    jQuery Effects: http://tutorials.jenkov.com/jquery/effects.html
+    jQuery Tutorial: http://www.impressivewebs.com/jquery-tutorial-for-beginners/
+    jQuery Event Handlers: https://api.jquery.com/category/events/
+    http://tympanus.net/codrops/2012/10/01/vertical-showcase-slider-with-jquery-and-css-transitions/
+    http://tympanus.net/codrops/2010/07/20/latest-tweets-tooltip/
+    http://tympanus.net/codrops/2012/06/05/fullscreen-slit-slider-with-jquery-and-css3/
+
+## Jquery traversing Mt. Dom -intro
+  -It’s easy to find and modify elements to manipulate when they are given ids and classes
+  $("#theButton").parent();
+  $("div").children();
+  $("div").children("p"); // returns all the child elements that are paragraphs
+
+  -Traversing sideways
+    $("div").next();
+    var firstDiv = $(".contentDiv").first()
+    firstDiv.next().css("background-color", "#ffaaaa");
+
+    $("div").prev();
+    $("div").toggleClass("bigBorder");
+
+    $(this)[0] = this
+
+## Other traversing methods
+  -first
+    $(".contentDiv").first().css("background-color", "#ffaaaa");
+  -last
+    $(".contentDiv").last().css("background-color", "#ffaaaa");
+  -siblings
+        $("div").click(function(){
+       $(this).siblings().fadeTo("slow", .2);
+      }
+  -filter
+      $("p").filter(".intro").addClass("highlight");
+
+  -variables
+    var panelColor = $(this).css("background-color");
+    console.log(panelColor);
+    $(".resetButton").css("background-color", panelColor);
+
+
+    jQuery traversing: http://www.kirupa.com/html5/traversing_the_dom.htm
+    jQuery tutorial: http://www.impressivewebs.com/jquery-tutorial-for-beginners/
+    http://tympanus.net/codrops/2010/01/08/some-useful-javascript-jquery-snippets-part-3/
+    http://tympanus.net/codrops/2010/01/07/some-useful-javascript-jquery-snippets-part-2/
+    http://tympanus.net/codrops/2010/01/07/pause-and-play-effect-with-jquery/

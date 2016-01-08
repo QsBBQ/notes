@@ -1,0 +1,141 @@
+## Angular forms
+  We’ll look at the input elements that constitute a form: text, selection menus, check boxes, etc.
+
+  -Topics
+    Form directives and services
+    Form validation outside the form
+    $location service
+    Form selection menus
+  -Angular form directives & services
+    To build a form, we will use a combination of angular attribute directives:
+    -use
+      ng-model
+      ng-submit
+
+      <form ng-submit="submit()" class="form-horizontal" novalidate>
+      		<label>Firstname</label>
+      		<input type="text" ng-model="user.firstname"/>
+      		<label>Lastname</label>
+      		<input type="text" ng-model="user.lastname"/>
+      		<label>Age</label>
+      		<input type="text" ng-model="user.age"/>
+      		<button class="btn">Submit</button>
+      </form>
+
+      user: {
+      firstname:
+      lastname:
+      age:  }
+
+      -In controllers
+        angular.module('myControllers',[])
+            .controller('FormController',function($scope) {
+              $scope.user = {};
+              $scope.wasSubmitted = false;
+
+              $scope.submit = function() {
+                $scope.wasSubmitted = true;
+                //$scope.user will contain our form data
+                //because of data binding and ng-model $scope.user
+                //is updated as we input form elements
+                //here we can send off $scope.user for backend processing
+              };
+           });
+  -Form validation
+    <form name="myForm" ng-submit="submit()" novalidate>
+      <label>Firstname</label>
+      <input name="firstname" type="text" ng-model="user.firstname" required/>
+      <label>Lastname</label>
+      <input type="text" ng-model="user.lastname" required/>
+      <label>Age</label>
+      <input type="text" ng-model="user.age"/ required>
+      <br>
+      <button class="btn">Submit</button>
+    </form>
+
+  -$valid
+    $valid is true if all of the containing forms and controls are valid.
+  -$invalid
+    $invalid is true if at least one containing control or form is invalid.
+  -$pristine
+    $pristine is true if user has not interacted with the form yet.
+  -$Dirty
+    $dirty is true if user has already interacted with the form or control.
+  -$submitted
+    $submitted is true if user has submitted the form even if it’s invalid.
+  -$error
+    $error is an object, containing references to controls or forms with failing validators
+  -example
+   http://jsfiddle.net/lillylangtree/bq7dcuvj/
+  # Other form validation options
+    For form validation, Angular provides built-in directives – including required, pattern, minlength, maxlength, min and max, email, number, url, date.
+    -minimum length
+      <input type="text" ng-minlength=5 />
+    -maximum length
+      <input type="text" ng-maxlength=20 />
+    -matches a pattern
+      <input type="text" ng-pattern="[a-zA-Z]" />
+    -email
+      <input type="email" name="email" ng-model="user.email" />
+    -number
+      <input type="number" name="email" ng-model="user.age" />
+    -Disabling the submit button
+      <button ng-disabled="myForm.$invalid" class="btn">Submit</button>
+  # Adding style to form on validation
+    - .ng-pristine
+    - .ng-valid
+    - .ng-dirty
+    - .ng-invalid
+
+    -css styling for above classes
+     input.ng-invalid {
+      border: 1px solid red;
+      }
+      input.ng-valid {
+      border: 1px solid green;
+      }
+    -How validations after submit
+      <form class='viewType' name="register_form" novalidate ng-submit="registerForm(register_form)">
+        <div class="row">
+                <div class="col-offset-md-2 col-md-4">
+                  <label>Username</label>
+                      <input  class="form-control"
+                                  type="text"
+                                  placeholder="Enter Username"
+                                  name="username"
+                                  ng-model="register.username"
+                                  ng-minlength=3
+                                  ng-maxlength=20
+                                  required />
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-offset-md-2 col-md-4">
+                  <label>Email</label>
+                      <input  class="form-control"
+                                  type="email"
+                                  placeholder="Enter email address"
+                                  name="email"
+                                  ng-model="register.email"
+                                  ng-minlength=5
+                                  ng-maxlength=40
+                                  required  />
+                </div>
+        </div>
+        <br/><button type="submit" class="btn btn-primary">Submit</button
+      </form>
+
+    -errors
+    <div class="col-md-5 error-container" ng-show="register_form.username.$dirty
+      	&& register_form.username.$invalid
+              && submitted">
+         <label style='color: red'>Error:</label>
+          <p class="error"  ng-show="register_form.username.$error.required">
+                   Please input a username</p>
+          <p class="error" ng-show="register_form.username.$error.minlength">
+                   Your username is required to be at least 3 characters</p>
+          <p class="error" ng-show="register_form.username.$error.maxlength">
+                   Your username cannot be longer than 20 characters</p>
+      </div>
+    Note that the errors only show after the form has been submitted.
+    You can change this by removing the &&submitted condition.

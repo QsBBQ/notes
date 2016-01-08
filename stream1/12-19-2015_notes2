@@ -1,0 +1,81 @@
+## Angular routing
+  We need some way of managing the navigation (routing) around our angular applications.
+  The angular framework makes it easy for us to manage this process by providing modules and services we can use .
+    -Topics
+      Single page applications
+      Setting up routing in the config function
+      Setting up our development environment with Git
+      Setting up our development environment with npm
+      Adding a parameter to a route
+ ## Single page applications
+   -A Single Page Application (SPA) is one in which we have a shell page (usually index.html) and we can load multiple template views into that shell.
+    In a SPA we can load the initial content upfront and then the different views or the individual mini-web pages (or templates) can be loaded on the fly and embedded into the shell.
+   -Setting up the routing config
+     -Angular routing
+       ng-view is the Angular attribute directive that we will include in the template of the main layout file.
+       In plain words, ng-view takes the file (html template file) we want based on the route selected and injects it into our main layout (index.html).
+     <!-- index.html -->
+        ...
+        <!-- MAIN CONTENT AND INJECTED VIEWS -->
+        <body>
+            <!-- angular templating -->
+
+            <div ng-view>
+              <!-- this is where content will be injected -->
+            </div>
+        </body>
+
+   -configure routes and view
+     ngRoute – an angular module to enable routing
+     $routeProvider – a service to manage the routing
+     ng-view – an attribute directive used to indicate where to inject route template
+
+     -index.html
+     <head>
+      <script
+        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js">
+              </script>
+              .
+              .
+              .
+        <!-- MAIN CONTENT AND INJECTED VIEWS -->
+          <body>
+              <!-- angular templating -->
+              <!-- this is where content will be injected -->
+              <div ng-view></div>
+          </body>
+      -routeProvider
+        when(       ‘<route_path>’,
+              {templateUrl: ‘<template html file>’,
+               controller: ‘<controller to associate with templateUrl file>’}
+              );
+    -We have created separate html template’s for each page of our application and moved them to a templates folder.
+     You will note that we have assigned a controller to each template.
+     This means that we can dispense with the ng-controller attribute we have used up to now.
+
+  # Adding a Parameter to a route
+    -a walk through template injection in action
+    -adding a parameter to a route
+    /<routing path>/:parameter1/:parameter2……..
+    - app.js
+      $routeProvider
+        .when('/', {
+                              templateUrl: 'templates/home.html'
+                      })
+        .when("/details/:page", {
+                            templateUrl: "templates/details.html",
+                            controller: 'DetailsController'
+                    })
+        .otherwise({redirectTo: '/'});
+
+     -
+      .controller('DetailsController',function($scope,$routeParams) {
+        //
+        $scope.title='Details Page';
+        $scope.wherefrom=$routeParams.page; //page set in route app.js
+        });
+
+  -LINKS
+    https://thinkster.io/a-better-way-to-learn-angularjs#routing
+    https://www.devcasts.io/p/an-introduction-to-angularjs-in-30-minutes/
+    https://mva.microsoft.com/en-US/training-courses/introduction-to-angularjs-8682?l=e13qSNH1_1204984382

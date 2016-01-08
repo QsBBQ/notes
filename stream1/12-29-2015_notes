@@ -1,0 +1,21 @@
+## Movies DB revisited
+  -Repo
+    https://github.com/lillylangtree/mdb-nav.git
+    -Keep the user informed
+     .controller('MovieTopRatedController',function($scope,MovieListService,myMovieConfig) {
+
+      $scope.loading = true;
+      var url = myMovieConfig.moviesEndpoint + '/top_rated?api_key=' + myMovieConfig.apiKey;
+      MovieListService.getList(url).then(
+          function(result){
+              $scope.movieList = result.data.results;
+
+              $scope.loading = false; //got data
+          }
+
+      -in movies.html
+          <div class='container'>
+       <div class='jumbotron' ng-show='loading'><h1>Loading.....</h1></div>
+
+  -Constant values
+    
