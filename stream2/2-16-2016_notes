@@ -1,0 +1,40 @@
+## Data Selection Queries Part One—Intro
+  -Use SELECT to target specific columns of data
+  -Use WHERE to narrow query answers
+  -Use aggregate functions to summarise data
+  -Concatenate columns to generate useful data
+  -Select distinct information
+
+  -Use Select to target specific columns of data
+    SELECT * FROM my_db.orders;
+    - Specific columns
+    SELECT amount, created_at FROM my_db.orders;
+    - With as keyword
+    SELECT amount, created_at AS purchased FROM my_db.orders;
+    -With where keyword
+    SELECT amount, created_at AS purchased FROM my_db.orders WHERE person_id = 1;
+
+  # USE AGGREGATE FUNCTIONS TO SUMMARISE DATA
+    -count
+      Count the number of rows in this column.
+    -sum
+      Attempt to add all the values in the column – must be a numeric type column to work.
+    -avg
+      Calculate the average of the values in this column – must be a numeric column.
+    -min
+      Calculate the minimum value in this column.
+    -max
+      Calculate the maximum value in this column.
+
+    SELECT COUNT(amount) FROM my_db.orders;
+    SELECT COUNT(amount), SUM(amount) FROM my_db.orders WHERE person_id = 1;
+    SELECT COUNT(amount) AS total_sales, SUM(amount) AS total_amount_spent FROM my_db.orders
+WHERE person_id = 1;
+    SELECT COUNT(amount) AS total_sales, AVG(amount) AS average_spend ,SUM(amount) AS total_amount_spent FROM mydb.orders
+WHERE person_id = 1;
+
+  # Concatenate Columns to Generate Useful Data
+    -SELECT concat(first_name, ' ', second_name) AS full_name FROM `my_db`.`people`;
+    -SELECT DISTINCT(amount) FROM my_db.orders;
+
+    SELECT concat(first_name, ' ', second_name, 'spent a total of $', sum(amount)) FROM `mydb`.`orders` WHERE person_id=1;

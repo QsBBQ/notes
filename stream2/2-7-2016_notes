@@ -1,0 +1,41 @@
+## Flask
+  Topics include:
+
+  Setting up Flask
+  Using a requirements file
+  Running the app in Debug mode
+  Routing
+  Templates
+  Build a second simple web application
+
+pip install -r requirements.txt -U
+pip install --requirement requirements.txt --upgrade
+
+requirements file may have
+Flask==0.10.1
+SQLAlchemy==1.0.8
+Flask-SQLAlchemy==2.0
+
+# classes
+  The Bird Class
+  Inheritance
+  The Fractions Class
+
+https://docs.python.org/2/reference/datamodel.html#special-method-names
+
+# Databases
+  How data is defined and stored
+  How relationships are defined between data tables
+  What Normalisation is
+
+#Linux
+  sudo apt-get install mysql-server
+  Mysql -u root -p -h 127.0.0.1
+  sudo apt-get install mysql-workbench
+
+# MySQL DB Creation
+  How to create a database/schema
+  How MySQL implements different field types
+  How to define a table with SQL
+  How to create constraints on your data
+  How to create indexes to speed up searches

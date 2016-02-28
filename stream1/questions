@@ -1,7 +1,6 @@
 -Scenario1
   Monty Hall
 -Scenario2
-  The wagging tail.
   laughing squirrel. laughing club
   home page, about, schedule(bootstrap, angular), Meetings(overeview fines angulargrid) meetingdetail(fines, notes, action items) angulargrid, upload csv with attendees
   http://jsfiddle.net/benfosterdev/UWLFJ/
@@ -15,7 +14,8 @@
   web capture solution
 
 ###
-ChallengeC error handling couldnt get working
+angularjs pagination
+http://code.ciphertrick.com/2015/06/01/search-sort-and-pagination-ngrepeat-angularjs/
 
 Angular
 D3

@@ -1,0 +1,9 @@
+## Using Python with MySQL, Part Three—Intro
+    How to identify how a value should be added into SQL based I its data type
+    How to build an insert SQL string
+    How to build an update SQL string
+    Use the four functions in our driver class to perform all the major database processes
+
+    -IDENTIFY HOW A VALUE SHOULD BE ADDED INTO SQL BASED ON ITS DATA TYPE
+      -for example don't want to add quotes here.
+      INSERT INTO my_db.orders (amount) VALUES ('1020.08');

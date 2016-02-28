@@ -1,0 +1,33 @@
+## PYTHON
+
+-Links
+  http://docs.python-guide.org/en/latest/
+
+-Path
+  echo $PATH
+-Mac terminal cheatsheet
+  https://github.com/0nn0/terminal-mac-cheatsheet/wiki/Terminal-Cheatsheet-for-Mac-(-basics-)
+-Linux terminal cheatsheet
+  http://linoxide.com/linux-command/linux-commands-cheat-sheet/
+-Star Wars
+  http://www.tweakandtrick.com/2010/06/watch-hidden-star-wars-in-windows-xp.html
+-How to make you own module
+  https://wiki.python.org/moin/CheeseShopTutorial
+-Pycharm
+  https://www.jetbrains.com/pycharm/docs/PyCharm_ReferenceCard.pdf
+
+-TESTING
+  Topics include:
+
+  Test-driven Development (TDD)
+  “Do the simplest thing that works”
+  Safe Refactoring
+  Writing the tests later
+  Code coverage
+
+  -cli unittest
+    python -m unittest -v test_module
+    if __name__ == '__main__':
+        #unittest.main()
+        suite = unittest.TestLoader().loadTestsFromTestCase(TestVendingMachine)
+        unittest.TextTestRunner(verbosity=2).run(suite)

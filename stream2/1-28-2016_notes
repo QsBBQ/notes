@@ -1,0 +1,110 @@
+## Boggle Part1
+  Topics include:
+
+  Creating and iterating on an algorithm
+  Using recursion
+  Using the logging module instead of print statements
+  Iterators and the yield keyword
+  Timing our algorithm using a decorator
+  The difference between dictionaries and arrays
+
+# Recursion
+
+# Logging
+
+# word list
+http://www.cs.duke.edu/courses/cps100/spring05/assign/boggle/code/bogwords.txt
+Try the following paths, or try searching for ‘dict’ or ‘word’:
+
+/usr/share/dict/
+/var/lib/dict/
+/usr/share/dict/words
+/usr/dict/words
+
+# Set comprehension
+  def get_dictionary():
+   with open('words.txt') as f:
+       return {w.strip().upper() for w in f}
+
+# File IO and exceptions
+    Topics include:
+
+    Reading from a file
+    Writing to a file
+    Exceptions
+    ##
+    with open('questions.txt') as f:
+        lines = f.readlines()
+            print lines
+
+    with open('questions.txt') as f:
+        for line in f:
+            print line
+
+            >>> f = open('questions.txt','w')
+        >>> f.write('test')
+        >>> f.flush()
+        >>> f.tell()
+        4L
+        >>> f.write("\n")
+        >>> f.tell()
+        6L
+        >>> f.write('test 2')
+
+  # ERRORS
+  BaseException
+    +-- SystemExit
+    +-- KeyboardInterrupt
+    +-- GeneratorExit
+    +-- Exception
+        +-- StopIteration
+        +-- StandardError
+        |    +-- BufferError
+        |    +-- ArithmeticError
+        |    |    +-- FloatingPointError
+        |    |    +-- OverflowError
+        |    |    +-- ZeroDivisionError
+        |    +-- AssertionError
+        |    +-- AttributeError
+        |    +-- EnvironmentError
+        |    |    +-- IOError
+        |    |    +-- OSError
+        |    |         +-- WindowsError (Windows)
+        |    |         +-- VMSError (VMS)
+        |    +-- EOFError
+        |    +-- ImportError
+        |    +-- LookupError
+        |    |    +-- IndexError
+        |    |    +-- KeyError
+        |    +-- MemoryError
+        |    +-- NameError
+        |    |    +-- UnboundLocalError
+        |    +-- ReferenceError
+        |    +-- RuntimeError
+        |    |    +-- NotImplementedError
+        |    +-- SyntaxError
+        |    |    +-- IndentationError
+        |    |         +-- TabError
+        |    +-- SystemError
+        |    +-- TypeError
+        |    +-- ValueError
+        |         +-- UnicodeError
+        |              +-- UnicodeDecodeError
+        |              +-- UnicodeEncodeError
+        |              +-- UnicodeTranslateError
+        +-- Warning
+             +-- DeprecationWarning
+             +-- PendingDeprecationWarning
+             +-- RuntimeWarning
+             +-- SyntaxWarning
+             +-- UserWarning
+             +-- FutureWarning
+             +-- ImportWarning
+             +-- UnicodeWarning
+             +-- BytesWarning
+
+             try:
+                 questions = get_questions()
+             except IOError as e:
+                 print 'Error reading questions file: %s' % e
+                 sys.exit()

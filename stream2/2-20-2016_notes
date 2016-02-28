@@ -1,0 +1,177 @@
+## Data Selection Queries Part Two—Intro
+    Select data using the LIKE keywords
+    Select records with column values in a range using BETWEEN
+    Use AND and NOT to extend your queries
+    Order and group results
+    Select data from more than one table using JOINS
+
+  # LIKE
+   # we create a new table and add three articles
+   USE mydb;
+
+      CREATE TABLE articles (
+              id INTEGER AUTO_INCREMENT,
+              title VARCHAR(200),
+              content text,
+              person_id INT NOT NULL,
+          PRIMARY KEY(id)
+      );
+
+      INSERT INTO articles (title, content, person_id) VALUES
+      ('article 1', 'some text', 1),
+      ('article 2', 'some more text', 1),
+      ('article 3', 'even more text', 1),
+      ('article 4', 'wow so much text', 1);
+
+    -LIKE
+      -Here we use the LIKE keyword after firstly specifying our column to search using WHERE.
+      -The string we’ve passed also contains ‘%’ characters, which tell MySQL to match on anything that has the word ‘article’ inside it.
+      SELECT * FROM articles WHERE title LIKE '%article%';
+      select * from articles where content like '%more%';
+      select * from articles where content like '%wow%';
+      select * from articles where title like '%4';
+    -SELECT RECORDS WITH COLUMN VALUES IN A RANGE USING BETWEEN
+      SELECT * FROM my_db.orders
+      WHERE
+      created_at >= '2015-09-08 14:48:00'
+      AND
+      created_at <= '2015-09-08 15:34:00';
+    -With between variation
+        SELECT * FROM my_db.orders
+        WHERE created_at
+        BETWEEN
+        '2015-09-08 14:48:00'
+        AND
+        '2015-09-08 15:34:00';
+    -Adding more rows to orders
+      INSERT INTO `mydb`.`orders`
+        (`amount`,
+        `person_id`)
+        VALUES
+        (6.02,2), (3.02,2), (7.02,3), (8.02,3), (9.02,3);
+    -Select just person_id 2 and 3
+      select * from mydb.orders
+      where person_id
+      between
+      2
+      and
+      3;
+   # Use AND and NOT to Extend Your Queries
+     -We used
+        SELECT * FROM my_db.orders
+        WHERE created_at
+        BETWEEN
+        '2015-09-08 14:48:00'
+        AND
+        '2015-09-08 15:34:00';
+      -We can also chain and
+          SELECT * FROM my_db.orders
+          WHERE created_at
+          BETWEEN
+          '2015-09-08 14:48:00'
+          AND
+          '2015-09-08 15:34:00'
+          AND
+          amount >12.00;
+        -Example
+            select * from mydb.orders
+            where person_id
+            between
+            2
+            and
+            3
+            and
+            amount > 10;
+        -Not between
+            SELECT * FROM my_db.orders
+            WHERE created_at
+            NOT BETWEEN
+            '2015-09-08 14:48:00'
+            AND
+            '2015-09-08 15:34:00';
+        -More not practice
+            select * from mydb.orders
+            where person_id
+            not between
+            2
+            and
+            3
+            and not
+            amount > 10;
+        -not like
+          SELECT * FROM articles WHERE title not LIKE '%article 1';
+  #Order and Group Results
+        SELECT * FROM my_db.orders
+        WHERE created_at
+        BETWEEN
+        '2015-09-08 14:48:00'
+        AND
+        '2015-09-08 15:34:00'
+        AND
+        amount > 12.00
+        ORDER BY person_id;
+
+        -Example
+          select * from mydb.orders order by amount;
+        -order by desc
+            SELECT * FROM my_db.orders
+            WHERE created_at
+            BETWEEN
+            '2015-09-08 14:48:00'
+            AND
+            '2015-09-08 15:34:00'
+            AND
+            amount > 12.00
+            ORDER BY person_id DESC;
+        -another example
+          select * from mydb.orders order by amount DESC;
+    # Group by
+      SELECT person_id, COUNT(amount) FROM mydb.orders GROUP BY person_id;
+          SELECT * FROM mydb.orders
+          WHERE created_at
+          BETWEEN
+          '2016-02-16 14:48:00'
+          AND
+          '2016-02-16 22:34:00'
+          and not
+          amount < 12.00
+          order by amount desc;
+  # SELECT DATA FROM MORE THAN ONE TABLE USING JOINS
+    <SOME SELECT query> JOIN <TABLE name> ON <CURRENT query column> = <TABLE
+      TO JOIN COLUMN TO match>;
+    -example question are backticks needed?
+        SELECT * FROM `mydb`.`people`
+        JOIN `mydb`.`profiles`
+        ON
+        people.id = profiles.person_id;
+    -example
+      SELECT CONCAT(people.first_name, ' ', people.second_name) AS fullname, SUM(orders.amount) AS total_spend
+      FROM `mydb`.`people`
+      JOIN `mydb`.`orders`
+      ON people.id = orders.person_id
+      GROUP BY people.id;
+    -Types of joins
+      -inner join (simply use join)
+        Returns all rows when there is at least one match on BOTH tables.
+      -left join (simply use left join)
+        Returns all rows from the left table and the matched rows from the right table.
+            -for example if I have a person but no orders this shows the person
+            SELECT people.first_name, orders.id
+            FROM mydb.people
+            left JOIN mydb.orders
+            ON people.id = orders.person_id
+            ORDER BY people.first_name;
+      -right join
+        Returns all rows from the right table and the matched rows from the left table.
+        -similar to above example with right join
+            SELECT people.first_name, orders.id
+            FROM mydb.orders
+            right JOIN mydb.people
+            ON people.id = orders.person_id
+            ORDER BY people.first_name;
+        -another example
+            SELECT orders.id, people.first_name
+            FROM mydb.orders
+            right JOIN mydb.people
+            ON orders.person_id = people.id
+            ORDER BY orders.person_id;

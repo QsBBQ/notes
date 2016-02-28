@@ -1,0 +1,53 @@
+# Using Python with MySQL Part One—Intro
+  Connect to a MySQL database
+  Query what tables are available in your database
+  Query what columns and column types your tables contain
+  Close connections and why you need to
+
+  #Connect to a mysql db
+    -file folder org
+      <your project>
+              |
+               – database
+              |          |
+              |           – __init__py
+              |          |
+              |           – mysql.py
+              |
+               – main.py
+              |
+               – settings.py
+    -installing mysql python
+      note: mysql-python only works on 2.7 not 3.
+      export PATH=$PATH:/usr/LOCAL/mysql/bin
+      pip install mysql-python
+    -Creating a connection
+        import MySQLdb AS _mysql
+        db = _mysql.CONNECT(db=database_name,
+                          host=host,
+                          USER=username,
+                          passwd=password)
+    -running queries
+      Before we can issue commands,
+      we need to create something called a ‘cursor’,
+      which acts pretty much like the cursor in your window or word processor would.
+      It allows you to park your place in the data.
+      -cursor
+      cursor = db.cursor()
+      cursor.EXECUTE("SELECT * FROM my_table;")
+
+      results = cursor.fetchall()
+
+      cursor.close()
+
+    - show COLUMNS
+        USE my_db;
+        SHOW COLUMNS FROM <TABLE name>:
+
+  ## Using Python with MySQL Part Two—Intro
+      How to structure your queries to include variable arguments when using SELECT
+      How to convert your results into manageable objects
+      How to DELETE rows
+
+    -Using select in python
+      

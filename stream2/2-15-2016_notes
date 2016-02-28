@@ -1,0 +1,233 @@
+## mysql
+  -Creating a db
+    create database mydb;
+  -Dropping a db
+    DROP TABLE `mydb`.`people`;
+  -integer
+    TINYINT—It can hold values from -128 to 127. Or 0 to 255 for Unsigned.
+    SMALLINT—It can hold values -32768 to 32767 or 0 to 65535 UNSIGNED.
+    MEDIUMINT—It can hold values from -8388608 to 8388607 or 0 to 16777215 UNSIGNED.
+    BIGINT— -9223372036854775808 to 9223372036854775807 normal. 0 to 18446744073709551615.
+  -float
+    FLOAT will do most of the time but if you’re dealing with currency you might consider using DECIMAL to store your values.
+
+    DECIMAL needs two arguments of as you’ve seen in the previous examples; the number of digits to record before the decimal place and the number to records after hence we used DECIMAL(18, 2).
+    You can choose how many you will in practice however ours is just and example for now.
+  -timestamp
+    DATE, DATETIME and TIMESTAMP
+  -character
+    char or varchar
+  -Text
+    TEXT
+  -Boolean
+    Boolean is a way of storing true or false values but isn’t widely supported in MySQL versions.
+    Most of the time it’s simply a case of defining a TINYINT and placing a 1 or a 0 in there to signify true (1) or false (0).
+    This is a more than acceptable solution, as you will see later as you are simply going to check if things equal 1 or 0 and this doesn’t overly complicate matters at all.
+
+  -How to define a table with sql
+    USE <your db name>;
+
+    CREATE TABLE <TABLE name> (
+          … SOME COLUMNS definitions
+    );
+    -##-
+    USE my_db;
+
+      CREATE TABLE people (
+              id INTEGER,
+              first_name VARCHAR(50),
+              second_name VARCHAR(50),
+              DOB DATE
+      );
+    -##-
+      USE mydb;
+      CREATE table people (
+          id INTEGER,
+            first_name varchar(50),
+            second_name varchar(50),
+            DOB date
+      );
+  # How to create constraints on your data.
+    -Not Null
+      Indicates that a column cannot store NULL value.
+    -Unique
+      Ensures that each row for a column must have a unique value.
+    -Auto_increment
+      Applies to integer columns only and is used when creating a new row in table.
+      It will check the last row’s column value and add 1 to it before inserting the new row.
+    -Primary Key
+      A combination of a NOT NULL and UNIQUE.
+      Ensures that a column (or combination of two or more columns) have a unique identity which helps to find a particular record in a table more easily and quickly.
+    -Foreign Key
+      Ensures the referential integrity of the data in one table to match values in another table.
+    -Check
+      Ensures that the value in a column meets a specific condition.
+    -Default
+      Specifies a default value when specified none for this column.
+
+    -Adding id as primary key
+      USE my_db;
+
+        CREATE TABLE people (
+              id INTEGER AUTO_INCREMENT,
+              first_name VARCHAR(50),
+              second_name VARCHAR(50),
+              DOB DATE,
+              PRIMARY KEY (id)
+        );
+        -##-
+        USE mydb;
+            CREATE table people (
+            	    id INTEGER auto_increment,
+                    first_name varchar(50) not null,
+                    second_name varchar(50) not null,
+                    DOB date not null,
+                    primary key (id)
+            );
+      -More table fun--
+        USE my_db;
+
+          CREATE TABLE orders (
+                id INTEGER AUTO_INCREMENT,
+                amount DECIMAL(18,2) NOT NULL,
+                person_id INT,
+                PRIMARY KEY (id),
+                FOREIGN KEY (person_id) REFERENCES people(id)
+          );
+      -##-
+        USE my_db;
+
+          CREATE TABLE orders (
+                id INTEGER AUTO_INCREMENT,
+                amount DECIMAL(18,2) NOT NULL,
+                person_id INT,
+                PRIMARY KEY (id),
+                FOREIGN KEY (person_id) REFERENCES people(id),
+                CHECK(amount>0)
+          );
+      -##-
+        USE mydb;
+
+          CREATE TABLE orders (
+                id INTEGER AUTO_INCREMENT,
+                amount DECIMAL(18,2) NOT NULL,
+                person_id INT,
+                created_at datetime DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (id),
+                FOREIGN KEY (person_id) REFERENCES people(id),
+                CHECK(amount>0)
+          );
+
+    # Indexes
+      USE my_db;
+
+        CREATE INDEX <index_name> ON <table_name> (<column_name>);
+
+      USE mydb;
+
+        CREATE INDEX people_index_firstname ON people (first_name);
+
+    # Data Creation and Modification -Intro
+
+        LEARNING OUTCOMES
+
+        By the end of this unit you will understand:
+
+        How to insert information into a table
+        How to insert information into related tables
+        How to update parts of an existing row
+        How to delete all rows
+        How to delete a specific row
+
+    # how to insert data into a table
+      -Background we have two tables
+        USE my_db;
+
+          CREATE TABLE people (
+                id INTEGER AUTO_INCREMENT,
+                first_name VARCHAR(50) NOT NULL,
+                second_name VARCHAR(50) NOT NULL,
+                DOB DATE NOT NULL,
+                PRIMARY KEY (id)
+          );
+
+          CREATE TABLE orders (
+                id INTEGER AUTO_INCREMENT,
+                amount DECIMAL(18, 2)  NOT NULL,
+                person_id INT,
+                created_at datetime DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (id),
+                FOREIGN KEY (person_id) REFERENCES people(id),
+                CHECK(amount>0)
+          );
+
+     # Adding data or insert
+       INSERT INTO `database name`.`table name` (<COLUMN names>) VALUES (<matching VALUES FOR columns>);
+       INSERT INTO `mydb`.`people`
+        (`first_name`,
+        `second_name`,
+        `DOB`)
+        VALUES
+        ('John',
+        'Lennon',
+        STR_TO_DATE('1/01/2012', '%d/%m/%Y'))
+    # Shows data in db
+      SELECT * FROM database_name.TABLE_NAME;
+      SELECT * FROM mydb.people;
+    # How to insert information into related tables
+      INSERT INTO `my_db`.`orders`
+        (`amount`,
+        `person_id`)
+        VALUES
+        (12.02,1);
+    # Inserting more than one row at a time.
+      INSERT INTO `my_db`.`orders`
+        (`amount`,
+        `person_id`)
+        VALUES
+        (12.02,1), (9.02,1), (13.02,1), (15.02,1), (15.02,1);
+    # How to update parts of an existing row
+      # Note on update
+      USE my_db;
+
+        CREATE TABLE profiles (
+              id INTEGER AUTO_INCREMENT,
+              person_id INT,
+              address text,
+              updated_at datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+              PRIMARY KEY (id),
+              FOREIGN KEY (person_id) REFERENCES people(id)
+        );
+      # Added to profiles
+        INSERT INTO `mydb`.`profiles`
+          (
+          `person_id`,
+          `address`)
+          VALUES
+          (1, "111 w. maple"),(2, "250 e. chestnut");
+      # Update command
+        UPDATE `my_db`.`my_table_name`
+          SET
+          `<column name>` = <NEW value>
+          WHERE `<unique column>` = <UNIQUE value>;
+        #- updates person with id 2
+          UPDATE `mydb`.`profiles`
+            SET
+            `address` = "1a New Address"
+            WHERE `person_id` = 2;
+      # How to delete rows
+        DELETE FROM `my_db`.`my_table_name`
+        WHERE <where_expression>;
+
+        DELETE FROM `mydb`.`people`
+        WHERE id=3;
+
+      # Cascade delete needed when we have foreign key constraints
+          DELETE FROM `mydb`.`profiles`
+          WHERE person_id = 4;
+
+          DELETE FROM `mydb`.`orders`
+          WHERE person_id = 4;
+
+          DELETE FROM `mydb`.`people`
+          WHERE id = 4;
