@@ -1,20 +1,5 @@
-How does an index work?
-I think it is just a smaller version of the table
-with just the data defined.
 
+Need to review
+from collections import Counter
 
-
-scoring
-Word
-length	Points
-3, 4	1
-5	2
-6	3
-7	5
-8+	11
-
--Maybe do a merge sort
-
-Future
-
-APIs you must use:  Marvel (yes, like the comics) and the rolz.org API
+http://victorlin.me/posts/2012/08/26/good-logging-practice-in-python

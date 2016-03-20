@@ -1,0 +1,20 @@
+VIM doc
+http://vimdoc.sourceforge.net/htmldoc/windows.html
+mongoimport -d donorsUSA -c projects --type csv --file opendata_projects_clean.csv --headerline
+
+    The database created: donorsUSA
+    The collection name: projects
+    The data type to be uploaded: csv
+    The filename: opendata_projects_clean.csv
+    Treat the first record imported as the field names: --headerline
+
+
+    D3.js: which will render our charts. D3 creates svg based charts which are passed into html div blocks.
+    Dc.js: which we will use as a wrapper for D3.js. This allows us to only have to add the basic chart parameters to our code to get them up and running.
+    Crossfilter.js: which is used for exploring large multivariate datasets in the browser. Really great for slicing and dicing data. Enables drill down based analysis.
+    queue.js: an asynchronous helper library for data ingestion involving multiple api’s. Its job is to wait until the data is available from each api before passing on the combined data for processing.
+    Dc.css: contains the styling directives for our dc charts.
+    keen.js: a dashboard template library.
+    bootstrap: used in conjunction with keen.js to layout our dashboard elements.
+
+git filter-branch --index-filter 'git rm --cached --ignore-unmatch "Stream 2 Project Assets 2.zip"' -f HEAD
