@@ -1,0 +1,55 @@
+Hello Django! – Models – Intro
+
+Setting up a database
+Create a model
+Installing SQLite Database Browser
+Adding data to a table
+Viewing records in the shell
+
+# starts a project 
+django-admin startproject <your project>
+django-admin startapp <your app>
+# creates tables and preps django for db
+python manage.py migrate
+python manage.py runserver
+
+# add model
+run python manage.py makemigrations
+run python manage.py migrate
+
+sqlitebrowser.org
+
+Question is __init__ needed in model?
+python manage.py shell
+
+from ModelTest_app.models import Contact
+Contact.objects.all()
+c = Contact()
+c.first_name = "Tom"
+c.last_name = "Bombadil"
+c.mobile = "5551234"
+c.save()
+
+Django supports ORM through models
+All model classes inherit from the models.Model class
+Model attributes map to database table fields
+Python comes with the SQLite DBMS
+Django projects are pre-configured to use SQLite, but can also use other DBMSs
+To  populate our database, we must first run the migrate command
+We run the makemigrations command followed by the migrate command after adding a new model or modifying an existing one
+SQLite has a free GUI-based administration application called SQLite Database Browser available, which you can use to view your project database and its tables
+You can populate your models with data through the Python shell
+
+## Administration Intro
+
+Setup Django admin
+
+Wire up models to admin
+
+Add a new model entry
+
+Wire a model to a template
+
+# Create superuser
+python manage.py createsuperuser
+

@@ -1,0 +1,57 @@
+# Django makes it easier to build better Web apps more quickly and with less code … so you can focus on writing your app without needing to reinvent the wheel.
+
+Don’t Repeat Yourself (DRY)
+# Model View Controller MVC
+Django projects are logically organized around the Model-View-Controller (MVC) architecture.
+
+However, Django’s MVC architecture is slightly different in that the views also act as controllers.
+
+	At a high level, Django is organized in a variation of the MVC architecture pattern called Model-Template-Views (MTV) :
+
+Here’s what happens when a visitor lands on your Django page:
+
+First, Django consults the various URL patterns you’ve created and uses the information to retrieve a view.
+The view then processes the request, querying your database via the models, if necessary.
+The view passes the requested information on to your template (you can bypass templates by having content hard-coded into a view but this is not recommended).
+The template then renders the data in a layout you’ve created and displays the page.
+# Views and URLS
+	Installation
+	Create a project
+	View the basics
+	Create an app
+	Register the app
+	Create a view
+
+# Install
+  pip install django
+# create a project
+  django-admin startproject HelloWorld_prj
+
+-manage.py: Perfoms admin tasks for your project, such as putting it on the system path, or starting the built-in webserver.
+-settings.py: This is the settings file for your project, where you define your project’s configuration settings, including database connections, other applications, templates, and more
+-urls.py: The url declarations for this Django project. This file contains a list of mappings which connect urls to views.
+-wsgi.py: An entry-point for WSGI-compatible web servers to serve our project. This file handles our requests/responses to/from Django development server.
+- __init__.py: An empty file that informs Python that this directory should be considered a Python package.
+
+python manage.py runserver
+django-admin startapp HelloWorld_app
+
+admin.py: This is used to register an app’s models with the admin interface
+
+models.py: This is where our data entities (tables) and their relationships  are created and accessed.
+
+tests.py: This is where our application test code is stored
+
+views.py: This fie acts as the controller for you application. Your business logic lives in here and deals with request from and responses to the server
+
+Signature: url(regex, view, kwargs=None, name=None, prefix=”)
+Example: url(r’^$’, views.say_hello)
+
+Let’s break it down:
+
+r – means that the string literal (the text immediately after it in quotations) is to be treated as a raw string, and any escape characters that might be present are ignored.
+regex –  this is a regular expression.
+the ^ sign looks for a character at the beginning of a string passed in the URL from the browser address bar.
+the $ looks for a character at the end of a string passed in the URL from the browser address bar.
+
+

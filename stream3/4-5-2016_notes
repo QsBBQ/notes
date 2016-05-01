@@ -1,0 +1,5 @@
+# comments thirdd party api
+
+https://disqus.com/api/applications/register/
+
+pip install pillow for imagefield

@@ -1,0 +1,19 @@
+How to restructure an app for packaging
+
+How to create a set of configuration files to describe how your app should be installed
+
+How to alter code to reflect your package’s naming scheme
+
+How to include the new app in your site requirements
+
+Extend the User model to add Threads and Posts to the user’s profile
+
+Collect information from multiple forms in one go
+
+Link in JavaScript support to enable tinymce WYSIWYG editing
+
+Enable or disable site functionality based on a user’s ownership of content and login status
+
+Use template tags to provide stats for users
+
+pip install git+https://github.com/<your github id here>/reusable_blog_app.git

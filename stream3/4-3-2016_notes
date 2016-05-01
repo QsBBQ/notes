@@ -1,0 +1,32 @@
+# Blog
+
+Create our model
+
+Unit testing our model
+
+Setup the Admin page with posts
+
+CREATE A NEW PROJECT
+
+Create a new Django project called blog_prj
+
+Create an new app called blog
+
+Create a project superuser for admin access
+
+Now that the framework basics are in place, let’s start fleshing out the blog app components.
+
+As per usual, register the blog app in INSTALLED_APPS within settings.py
+
+# Testing
+from django.test import TestCase
+from .models import Post
+ 
+class PostTests(TestCase):
+    def test_str(self):
+        test_title = Post(title='My Latest Blog Post')
+        self.assertEquals(
+                  str(test_title),
+                  'My Latest Blog Post')
+
+python manage.py test blog
